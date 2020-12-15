@@ -26,7 +26,7 @@ You need do the following to add your widget to the project
    - Your directory path should be /lib/widgets/user_widgets/<your_dir>/ (you can have any number of dirs in yours)
    - You don't need to create a main(), just extend a Widget type class that returns any Widget type.
    - See /lib/widgets/user_widgets/example.dart for reference.
-3. Add "part of user_widgets" to the top of your main widget file that you want to hook into the project. 
+3. Add `part of user_widgets;` to the top of your main widget file that you want to hook into the project. 
    - See /lib/widgets/user_widgets/example.dart for reference.
 4. Extend and define a custom WidgetInfo class from 'widget_info.dart in your widget file.
    - This class needs a unique name from the other user's WidgetInfo extended classes. 
