@@ -14,7 +14,7 @@ import 'widget_info.dart'; //defines the abstract info class
 //       Initial version will only have built-in Flutter state management (setState(), InheritedWidget, etc)
 //       You can grow your widget as the app grows.
 //       This app WILL (hopefully) be published to the app stores and updated as new user widgets added!
-part 'test1.dart';
+part 'example.dart';
 
 //4. Add your Widget Info class to the list
 List<dynamic> widgetInfoList = [
