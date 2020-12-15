@@ -7,7 +7,7 @@ This app will (hopefully) get published to the app stores and shared among our b
 The app will have a list of member user created widgets to display.  
 The app will push your widget on as a new page, but you can have multiple pages.  
 Your widget will have the entire screen.  
-Your widget can be anything you want, get creative with a mini-app or simply post a mi-card, whatever you want.  
+Your widget can be anything you want, get creative with a mini-app, a unique animation, or simply post a mi-card, whatever you want.  
 
 Some guidelines and best practices to follow:
 - Users must be able to go back to the listview of user widgets. You should create back buttons for ease and use Navigator.pop().
@@ -15,7 +15,7 @@ Some guidelines and best practices to follow:
 - Try to use stateful widgets, setstate and inherited widgets for state management, if you need a state management package be sure to ask.
 - You can add image assets, but keep the filesize as low as possible and try to keep your entire directory under 500KB, if possible. You are able to load network images. If you have a large dataset, you'll need to load that dynamically.
 
-### Steps to add your app
+### Steps to add your widget to the app
 You need do the following to add your widget to the project
 1. Fork the repo, clone your fork, and checkout a new branch
    1. Fork a copy of the repo at https://github.com/Flutter-Buddies/App on your github account
