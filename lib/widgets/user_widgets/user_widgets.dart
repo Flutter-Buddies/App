@@ -15,10 +15,12 @@ import 'widget_info.dart'; //defines the abstract info class
 //       You can grow your widget as the app grows.
 //       This app WILL (hopefully) be published to the app stores and updated as new user widgets added!
 part 'example.dart';
+part 'zambrella_widget.dart';
 
 //4. Add your Widget Info class to the list
 List<dynamic> widgetInfoList = [
   info,
+  zambrella,
   // <-- add your widgetinfo class here
 ];
 // can this be done without adding the widgetinfo to the list? (see user_widgets.dart)
