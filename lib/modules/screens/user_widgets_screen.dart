@@ -18,7 +18,8 @@ class UserWidgetsScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             return ListTile(
               title: Text(widgetInfoList[index].name),
-              subtitle: Text(widgetInfoList[index].description),
+              subtitle: Text(
+                  "${widgetInfoList[index].description} by ${widgetInfoList[index].developer}"),
               onTap: () {
                 Navigator.push(
                   context,
