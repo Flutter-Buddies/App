@@ -2,8 +2,9 @@ part of user_widgets;
 
 //user defines from abstract class needed information
 class Zambrella extends WidgetInfo {
-  get name => 'Zambrella';
-  get description => "Doug Todd";
+  get name => 'Doug \"Zambrella\" Todd';
+  get description =>
+      "DOTA player | Flutter Developer | Biochemistry Graduate | Tech Enthusiast | Metal Music Lover";
   get widget => ZambrellaWidget();
 }
 
@@ -13,8 +14,28 @@ Zambrella zambrella = Zambrella();
 class ZambrellaWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('Test 1'),
+    return Theme(
+      data: ThemeData(primaryColor: Colors.red),
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text('Doug Todd'),
+          actions: [
+            GestureDetector(
+              onTap: () {
+                print('Twitter');
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image(
+                  image: NetworkImage(
+                      'https://1000logos.net/wp-content/uploads/2017/06/Twitter-Logo.png'),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
