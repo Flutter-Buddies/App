@@ -4,7 +4,10 @@ library user_widgets;
 // add your required dependencies here
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'widget_info.dart'; //defines the abstract info class
+import 'package:url_launcher/url_launcher.dart'; // Added so we can link to socials or Discord
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // You need do the following to add your widget to the project
 // TODO: 1. Add "part of user_widgets;" to your widget file.
