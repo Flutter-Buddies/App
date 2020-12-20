@@ -47,30 +47,8 @@ class _ZambrellaWidgetState extends State<ZambrellaWidget> {
               child: Center(
                 child: Column(
                   children: [
-                    Container(
-                      margin: EdgeInsets.all(16),
-                      width: 150,
-                      height: 150,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: _accentColor,
-                          width: 2,
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: _accentColor.withOpacity(0.5),
-                            spreadRadius: 5,
-                            blurRadius: 7,
-                          ),
-                        ],
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage(
-                            'assets/profile_images/Zambrella_profile.jpg',
-                          ),
-                        ),
-                      ),
+                    ProfileImage(
+                      accentColor: _accentColor,
                     ),
                     Text(
                       zambrella.name,
@@ -147,6 +125,60 @@ class _ZambrellaWidgetState extends State<ZambrellaWidget> {
 }
 
 //* Custom widgets below
+class ProfileImage extends StatefulWidget {
+  final Color accentColor;
+  ProfileImage({@required this.accentColor});
+
+  @override
+  _ProfileImageState createState() => _ProfileImageState();
+}
+
+class _ProfileImageState extends State<ProfileImage>
+    with SingleTickerProviderStateMixin {
+  AnimationController _animationController;
+  Animation _animation;
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 1500),
+    )..repeat(reverse: true);
+    _animation = Tween(begin: 2.0, end: 10.0).animate(_animationController)
+      ..addListener(() {
+        setState(() {});
+      });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(16),
+      width: 150,
+      height: 150,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(
+          color: widget.accentColor,
+          width: 2,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: widget.accentColor.withOpacity(0.5),
+            spreadRadius: _animation.value,
+            blurRadius: _animation.value,
+          ),
+        ],
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: AssetImage(
+            'assets/profile_images/Zambrella_profile.jpg',
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 class SocialButtonPlain extends StatelessWidget {
   final Color borderColor;
