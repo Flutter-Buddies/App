@@ -43,72 +43,100 @@ class _ZambrellaWidgetState extends State<ZambrellaWidget> {
           value: SystemUiOverlayStyle.light,
           // Stop the widgets from overflowing into notification area
           child: SafeArea(
-            child: Center(
-              child: Column(
-                children: [
-                  Container(
-                    margin: EdgeInsets.all(16),
-                    width: 150,
-                    height: 150,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: _accentColor,
-                        width: 2,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: _accentColor.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7,
+            child: SingleChildScrollView(
+              child: Center(
+                child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.all(16),
+                      width: 150,
+                      height: 150,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: _accentColor,
+                          width: 2,
                         ),
-                      ],
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage(
-                          'assets/profile_images/Zambrella_profile.jpg',
+                        boxShadow: [
+                          BoxShadow(
+                            color: _accentColor.withOpacity(0.5),
+                            spreadRadius: 5,
+                            blurRadius: 7,
+                          ),
+                        ],
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage(
+                            'assets/profile_images/Zambrella_profile.jpg',
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Text(
-                    zambrella.name,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    '🇬🇧 United Kingdom',
-                    style: TextStyle(fontWeight: FontWeight.w200),
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SocialButtonPlain(
-                        icon: FontAwesomeIcons.github,
-                        link: 'https://github.com/Zambrella',
-                        borderColor: _darkSecondary,
-                      ),
-                      SocialButtonPlain(
-                        icon: FontAwesomeIcons.twitter,
-                        link: 'https://twitter.com/Zambrella101',
-                        borderColor: _darkSecondary,
-                      ),
-                      SocialButtonPlain(
-                        icon: FontAwesomeIcons.linkedin,
-                        link:
-                            'https://www.linkedin.com/in/douglas-todd-105b79b0/',
-                        borderColor: _darkSecondary,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Text('Twitter: @Zambrella101'),
-                  Text('GitHub: @Zambrella'),
-                ],
+                    Text(
+                      zambrella.name,
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      '🇬🇧 United Kingdom',
+                      style: TextStyle(fontWeight: FontWeight.w200),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SocialButtonPlain(
+                          icon: FontAwesomeIcons.github,
+                          link: 'https://github.com/Zambrella',
+                          borderColor: _darkSecondary,
+                        ),
+                        SocialButtonPlain(
+                          icon: FontAwesomeIcons.twitter,
+                          link: 'https://twitter.com/Zambrella101',
+                          borderColor: _darkSecondary,
+                        ),
+                        SocialButtonPlain(
+                          icon: FontAwesomeIcons.linkedin,
+                          link:
+                              'https://www.linkedin.com/in/douglas-todd-105b79b0/',
+                          borderColor: _darkSecondary,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    InfoSection(
+                      title: 'About',
+                      body:
+                          """Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    """,
+                      dividerColor: _darkSecondary,
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    InfoSection(
+                      title: 'Skills',
+                      body:
+                          """Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    """,
+                      dividerColor: _darkSecondary,
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    InfoSection(
+                      title: 'Interests',
+                      body:
+                          """Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    """,
+                      dividerColor: _darkSecondary,
+                    )
+                  ],
+                ),
               ),
             ),
           ),
@@ -117,6 +145,8 @@ class _ZambrellaWidgetState extends State<ZambrellaWidget> {
     );
   }
 }
+
+//* Custom widgets below
 
 class SocialButtonPlain extends StatelessWidget {
   final Color borderColor;
@@ -146,6 +176,35 @@ class SocialButtonPlain extends StatelessWidget {
           ),
           child: Icon(icon),
         ),
+      ),
+    );
+  }
+}
+
+class InfoSection extends StatelessWidget {
+  final String title;
+  final String body;
+  final Color dividerColor;
+  InfoSection({this.title, this.body, this.dividerColor});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        children: [
+          Align(
+            child: Text(
+              title,
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            alignment: Alignment.centerLeft,
+          ),
+          Divider(
+            color: dividerColor,
+            thickness: 2,
+          ),
+          Text(body)
+        ],
       ),
     );
   }
