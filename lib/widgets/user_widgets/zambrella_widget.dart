@@ -88,30 +88,58 @@ class _ZambrellaWidgetState extends State<ZambrellaWidget> {
                     ),
                     InfoSection(
                       title: 'About',
-                      body:
-                          """Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                      body: """
+I studied biochemistry at Bath univeristy. After which I became a DOTA 2 caster. Through that I met the founders of an esports startup where I spent the last 4 years running their marketing and growth. I am looking for a job as a Flutter developer.
                     """,
                       dividerColor: _darkSecondary,
+                      icon: Icons.info,
+                      iconColor: _accentColor,
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    InfoSection(
+                      title: 'My Flutter journey',
+                      body: """
+I started my Flutter journey almost 2 years ago when a colleague suggested Angela's course on Udemy, after I expressed an interest in programming. I've been learning on and off but I am now ready to take it to the next level and become an app developer full time! 
+                    """,
+                      dividerColor: _darkSecondary,
+                      icon: Icons.code,
+                      iconColor: _accentColor,
                     ),
                     SizedBox(
                       height: 20,
                     ),
                     InfoSection(
                       title: 'Skills',
-                      body:
-                          """Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                      body: """
+- Flutter app development
+- Online marketing
+- Designing ad creatives
+- User analytics
+- UI/UX
+- Prototyping
+- Metal music production
+- Biochemistry
                     """,
                       dividerColor: _darkSecondary,
+                      icon: Icons.flash_on,
+                      iconColor: _accentColor,
                     ),
                     SizedBox(
                       height: 20,
                     ),
                     InfoSection(
                       title: 'Interests',
-                      body:
-                          """Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                      body: """
+- Gaming
+- Esports
+- Music production
+- Technology
                     """,
                       dividerColor: _darkSecondary,
+                      icon: Icons.person,
+                      iconColor: _accentColor,
                     )
                   ],
                 ),
@@ -216,18 +244,34 @@ class SocialButtonPlain extends StatelessWidget {
 class InfoSection extends StatelessWidget {
   final String title;
   final String body;
+  final IconData icon;
+  final Color iconColor;
   final Color dividerColor;
-  InfoSection({this.title, this.body, this.dividerColor});
+  InfoSection(
+      {this.title, this.body, this.dividerColor, this.icon, this.iconColor});
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Align(
-            child: Text(
-              title,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            child: Row(
+              children: [
+                Icon(
+                  icon,
+                  size: 18,
+                  color: iconColor,
+                ),
+                SizedBox(
+                  width: 4,
+                ),
+                Text(
+                  title,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
             alignment: Alignment.centerLeft,
           ),
@@ -235,7 +279,10 @@ class InfoSection extends StatelessWidget {
             color: dividerColor,
             thickness: 2,
           ),
-          Text(body)
+          Text(
+            body,
+            textAlign: TextAlign.left,
+          )
         ],
       ),
     );
