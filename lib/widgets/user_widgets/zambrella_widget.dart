@@ -68,18 +68,24 @@ class _ZambrellaWidgetState extends State<ZambrellaWidget> {
                         SocialButtonPlain(
                           icon: FontAwesomeIcons.github,
                           link: 'https://github.com/Zambrella',
-                          borderColor: _darkSecondary,
+                          borderColor: _secondaryAccentColor,
                         ),
                         SocialButtonPlain(
                           icon: FontAwesomeIcons.twitter,
                           link: 'https://twitter.com/Zambrella101',
-                          borderColor: _darkSecondary,
+                          borderColor: _secondaryAccentColor,
                         ),
                         SocialButtonPlain(
                           icon: FontAwesomeIcons.linkedin,
                           link:
                               'https://www.linkedin.com/in/douglas-todd-105b79b0/',
-                          borderColor: _darkSecondary,
+                          borderColor: _secondaryAccentColor,
+                        ),
+                        SocialButtonPlain(
+                          icon: FontAwesomeIcons.spotify,
+                          link:
+                              'https://open.spotify.com/playlist/6vq0QI9OeGMmr7yqbnE7Xx?si=mx2AF8HfRvStFi1Bgkfd1A',
+                          borderColor: _secondaryAccentColor,
                         ),
                       ],
                     ),
@@ -89,7 +95,7 @@ class _ZambrellaWidgetState extends State<ZambrellaWidget> {
                     InfoSection(
                       title: 'About',
                       body: """
-I studied biochemistry at Bath univeristy. After which I became a DOTA 2 caster. Through that I met the founders of an esports startup where I spent the last 4 years running their marketing and growth. I am looking for a job as a Flutter developer.
+I studied biochemistry at Bath univeristy, after which I became a DOTA 2 caster. Through casting I met the founders of an esports startup where I have spent the last 4 years running their marketing and growth. I am now looking for a job as a Flutter developer.
                     """,
                       dividerColor: _darkSecondary,
                       icon: Icons.info,
@@ -101,7 +107,7 @@ I studied biochemistry at Bath univeristy. After which I became a DOTA 2 caster.
                     InfoSection(
                       title: 'My Flutter journey',
                       body: """
-I started my Flutter journey almost 2 years ago when a colleague suggested Angela's course on Udemy, after I expressed an interest in programming. I've been learning on and off but I am now ready to take it to the next level and become an app developer full time! 
+I started my Flutter journey almost 2 years ago after I expressed an interest in programming and a colleague suggested Angela's course on Udemy. I've been learning on and off but I am now ready to take it to the next level and become an app developer full time! 
                     """,
                       dividerColor: _darkSecondary,
                       icon: Icons.code,
@@ -133,8 +139,8 @@ I started my Flutter journey almost 2 years ago when a colleague suggested Angel
                       title: 'Interests',
                       body: """
 - Gaming
-- Esports
-- Music production
+- Esports (mainly DOTA 2)
+- Metal music & production
 - Technology
                     """,
                       dividerColor: _darkSecondary,
@@ -211,10 +217,14 @@ class _ProfileImageState extends State<ProfileImage>
 class SocialButtonPlain extends StatelessWidget {
   final Color borderColor;
   final IconData icon;
+  final Color iconColor;
   final String link;
 
   const SocialButtonPlain(
-      {@required this.borderColor, @required this.icon, @required this.link});
+      {@required this.borderColor,
+      @required this.icon,
+      @required this.link,
+      this.iconColor});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -225,7 +235,7 @@ class SocialButtonPlain extends StatelessWidget {
           await launch(link);
         },
         child: Container(
-          padding: EdgeInsets.all(8),
+          padding: EdgeInsets.all(10),
           clipBehavior: Clip.hardEdge,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
@@ -234,7 +244,12 @@ class SocialButtonPlain extends StatelessWidget {
               width: 2,
             ),
           ),
-          child: Icon(icon),
+          child: Center(
+            child: Icon(
+              icon,
+              color: iconColor,
+            ),
+          ),
         ),
       ),
     );
@@ -262,7 +277,7 @@ class InfoSection extends StatelessWidget {
                 Icon(
                   icon,
                   size: 18,
-                  color: iconColor,
+                  color: iconColor ?? Colors.white,
                 ),
                 SizedBox(
                   width: 4,
