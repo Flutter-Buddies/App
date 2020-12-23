@@ -30,6 +30,7 @@ class _ZambrellaWidgetState extends State<ZambrellaWidget> {
   Widget build(BuildContext context) {
     return Theme(
       data: ThemeData(
+        accentColor: _accentColor,
         textTheme: Theme.of(context).textTheme.apply(
               bodyColor: Colors.white,
               displayColor: Colors.white,
@@ -43,6 +44,7 @@ class _ZambrellaWidgetState extends State<ZambrellaWidget> {
           value: SystemUiOverlayStyle.light,
           // Stop the widgets from overflowing into notification area
           child: SafeArea(
+            // Todo: Add sliver app bar or just app bar so iOS can go back
             child: SingleChildScrollView(
               child: Center(
                 child: Column(
