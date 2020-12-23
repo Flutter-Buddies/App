@@ -2,6 +2,8 @@ library user_widgets;
 
 // all included parts (widgets) have the packages listed here available to them
 // add your required dependencies here
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
