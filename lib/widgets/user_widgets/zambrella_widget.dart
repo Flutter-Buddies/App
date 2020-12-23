@@ -167,7 +167,7 @@ class _ZambrellaWidgetState extends State<ZambrellaWidget> {
 I studied biochemistry at Bath univeristy, after which I became a DOTA 2 caster. Through casting I met the founders of an esports startup where I have spent the last 4 years running their marketing and growth. I am now looking for a job as a Flutter developer.
                   """,
                             dividerColor: _darkSecondary,
-                            icon: Icons.info,
+                            icon: Icons.info_outline,
                             iconColor: _accentColor,
                           ),
                           SizedBox(
