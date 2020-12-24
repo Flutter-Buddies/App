@@ -9,32 +9,31 @@ class UserWidgetsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //debugPrint(widgetInfoList.toString());
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: kDarkBlue,
-          title: Text('Developer Widgets'),
-        ),
-        body: ListView.builder(
-          itemCount: widgetInfoList.length,
-          itemBuilder: (context, index) {
-            return InkWell(
-              splashColor: Colors.transparent,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => widgetInfoList[index].widget,
-                  ),
-                );
-              },
-              child: DeveloperCard(
-                developerName: widgetInfoList[index].developer,
-                developerDescription: widgetInfoList[index].description,
-              ),
-            );
-          },
-        ),
+    // Removed SafeArea because on iOS it's not needed as long as you have an AppBar
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: kDarkBlue,
+        title: Text('Developer Widgets'),
+      ),
+      body: ListView.builder(
+        itemCount: widgetInfoList.length,
+        itemBuilder: (context, index) {
+          return InkWell(
+            splashColor: Colors.transparent,
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => widgetInfoList[index].widget,
+                ),
+              );
+            },
+            child: DeveloperCard(
+              developerName: widgetInfoList[index].developer,
+              developerDescription: widgetInfoList[index].description,
+            ),
+          );
+        },
       ),
     );
   }
@@ -78,12 +77,17 @@ class DeveloperCard extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 50),
-                  child: Text(
-                    developerName,
-                    style: TextStyle(
-                        color: kVeryDarkBlue,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold),
+                  child: Row(
+                    children: [
+                      Text(
+                        developerName,
+                        style: TextStyle(
+                            color: kVeryDarkBlue,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Icon(Icons.chevron_right),
+                    ],
                   ),
                 ),
               ),
