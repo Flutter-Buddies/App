@@ -1,12 +1,30 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:http/http.dart' as http;
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  // Function to get number of people online using Discord's public API
+  Future<int> getDiscordOnlineNumber() async {
+    http.Response response = await http
+        .get('https://discord.com/api/guilds/768528774991446088/widget.json');
+    Map<String, dynamic> decoded = jsonDecode(response.body);
+    dynamic numberOnline = decoded['presence_count'];
+    return numberOnline;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Todo: have bottom part of app bar slide up when scrolling
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: Image(
@@ -143,7 +161,16 @@ class HomeScreen extends StatelessWidget {
               trailingWidget: Row(
                 children: [
                   Icon(FontAwesomeIcons.discord),
-                  Text('103 members online'),
+                  FutureBuilder<int>(
+                    future: getDiscordOnlineNumber(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return Text('${snapshot.data} members online');
+                      } else {
+                        return Text('Loading...');
+                      }
+                    },
+                  ),
                 ],
               ),
             ),
