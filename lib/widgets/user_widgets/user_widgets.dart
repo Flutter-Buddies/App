@@ -24,7 +24,7 @@ part 'zambrella_widget.dart';
 ExampleInfo exampleInfo = ExampleInfo();
 
 // TODO: 5. Add your Widget Info class to the list
-List<dynamic> widgetInfoList = [
+List<WidgetInfo> widgetInfoList = [
   exampleInfo,
   zambrella,
   // <-- add your widgetinfo class here

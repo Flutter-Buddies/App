@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_buddies/widgets/user_widgets/user_widgets.dart';
+import 'package:flutter_buddies/widgets/user_widgets/widget_info.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -25,218 +27,228 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Todo: have bottom part of app bar slide up when scrolling
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: Image(
-          image: AssetImage('assets/global_images/flutterbuddies.png'),
-        ),
-        centerTitle: true,
-        title: Column(
-          children: [
-            Text(
-              'Flutter Buddies',
-              style: TextStyle(color: Colors.black, fontSize: 24),
-            ),
-            Text(
-              'A Flutter Developer Community',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 14),
-            ),
-          ],
-        ),
-        bottom: PreferredSize(
-          preferredSize: Size(double.infinity, 80),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                AppBarIcon(
-                  iconImage: AssetImage(
-                      'assets/global_images/Discord-Logo-Shadowed.png'),
-                  iconText: 'Discord',
-                  iconColor: Color(0xff8C9EFF),
-                  iconFunction: () async {
-                    await launch('http://flutterbuddies.com');
-                  },
-                ),
-                AppBarIcon(
-                  iconImage: AssetImage(
-                      'assets/global_images/Twitter-Logo-Shadowed.png'),
-                  iconText: 'Twitter',
-                  iconColor: Color(0xff00A2F5),
-                  iconFunction: () {
-                    // Todo: Add twitter link
-                  },
-                ),
-                AppBarIcon(
-                  iconImage: AssetImage(
-                      'assets/global_images/YouTube-Logo-Shadowed.png'),
-                  iconText: 'YouTube',
-                  iconColor: Color(0xffFF0000),
-                  iconFunction: () {
-                    // Todo: Add YouTube link
-                  },
-                ),
-                AppBarIcon(
-                  iconImage: AssetImage(
-                      'assets/global_images/Website-Logo-Shadowed.png'),
-                  iconText: 'Website',
-                  iconColor: Color(0xff2771BB),
-                  iconFunction: () async {
-                    await launch('http://flutterbuddies.com');
-                  },
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SectionHeader(
-              leadingIcon: Icons.calendar_today,
-              headerText: 'Upcoming Events',
-              headerFunction: () {
-                print('Upcoming Events Pressed');
-              },
-              trailingWidget: Text(
-                'See more',
-                style: TextStyle(
-                  decoration: TextDecoration.underline,
-                ),
+      body: AnnotatedRegion<SystemUiOverlayStyle>(
+        //! this should change the notification area text to black but it isn't
+        value: SystemUiOverlayStyle.light,
+        child: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              backgroundColor: Colors.white,
+              leading: Image(
+                image: AssetImage('assets/global_images/flutterbuddies.png'),
               ),
-            ),
-            GridView.count(
-              // Shrink wrap tells the grid view to let the children define the size
-              shrinkWrap: true,
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              mainAxisSpacing: 16,
-              crossAxisSpacing: 16,
-              // Setting to none so that the shadow isn't clipped
-              clipBehavior: Clip.none,
-              childAspectRatio: 0.85,
-              crossAxisCount: 2,
-              physics: NeverScrollableScrollPhysics(),
-              children: [
-                EventCard(
-                  eventName: 'Flutter talks: State management solutions',
-                  eventDateTime: DateTime.now(),
-                  eventImage:
-                      AssetImage('assets/global_images/flutter-logo.png'),
-                ),
-                EventCard(
-                  eventName: 'Flutter talks: State management solutions',
-                  eventDateTime: DateTime.now(),
-                  eventImage:
-                      AssetImage('assets/global_images/flutter-logo.png'),
-                ),
-                EventCard(
-                  eventName: 'Flutter talks: State management solutions',
-                  eventDateTime: DateTime.now(),
-                  eventImage:
-                      AssetImage('assets/global_images/flutter-logo.png'),
-                ),
-                EventCard(
-                  eventName: 'Flutter talks: State management solutions',
-                  eventDateTime: DateTime.now(),
-                  eventImage:
-                      AssetImage('assets/global_images/flutter-logo.png'),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 8,
-            ),
-            SectionHeader(
-              leadingIcon: Icons.people,
-              headerText: 'Member pages',
-              headerFunction: () {
-                Navigator.pushNamed(context, 'user_widgets_screen');
-              },
-              trailingWidget: Row(
+              centerTitle: true,
+              title: Column(
                 children: [
-                  Container(
-                    height: 10,
-                    width: 10,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle, color: Colors.green),
+                  Text(
+                    'Flutter Buddies',
+                    style: TextStyle(color: Colors.black, fontSize: 24),
                   ),
-                  SizedBox(
-                    width: 4,
-                  ),
-                  FutureBuilder<int>(
-                    future: getDiscordOnlineNumber(),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return Text('${snapshot.data} members online');
-                      } else {
-                        return Text('Loading...');
-                      }
-                    },
+                  Text(
+                    'A Flutter Developer Community',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w300,
+                        fontSize: 14),
                   ),
                 ],
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                MemberCircle(
-                  memberName: 'Developer 1',
-                  memberImage:
-                      AssetImage('assets/global_images/flutter-logo.png'),
-                ),
-                MemberCircle(
-                  memberName: 'Developer 2',
-                  memberImage:
-                      AssetImage('assets/global_images/flutter-logo.png'),
-                ),
-                MemberCircle(
-                  memberName: 'Developer 3',
-                  memberImage:
-                      AssetImage('assets/global_images/flutter-logo.png'),
-                ),
-                MemberCircle(
-                  memberName: 'Developer 4',
-                  memberImage:
-                      AssetImage('assets/global_images/flutter-logo.png'),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 8,
-            ),
-            SectionHeader(
-              leadingIcon: FontAwesomeIcons.hammer,
-              headerText: 'Active Projects',
-              headerFunction: () {
-                print('Active Projects Pressed');
-              },
-              trailingWidget: Text(
-                'See more',
-                style: TextStyle(
-                  decoration: TextDecoration.underline,
+              bottom: PreferredSize(
+                preferredSize: Size(double.infinity, 80),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      AppBarIcon(
+                        iconImage: AssetImage(
+                            'assets/global_images/Discord-Logo-Shadowed.png'),
+                        iconText: 'Discord',
+                        iconColor: Color(0xff8C9EFF),
+                        iconFunction: () async {
+                          await launch('http://flutterbuddies.com');
+                        },
+                      ),
+                      AppBarIcon(
+                        iconImage: AssetImage(
+                            'assets/global_images/Twitter-Logo-Shadowed.png'),
+                        iconText: 'Twitter',
+                        iconColor: Color(0xff00A2F5),
+                        iconFunction: () {
+                          // Todo: Add twitter link
+                        },
+                      ),
+                      AppBarIcon(
+                        iconImage: AssetImage(
+                            'assets/global_images/YouTube-Logo-Shadowed.png'),
+                        iconText: 'YouTube',
+                        iconColor: Color(0xffFF0000),
+                        iconFunction: () {
+                          // Todo: Add YouTube link
+                        },
+                      ),
+                      AppBarIcon(
+                        iconImage: AssetImage(
+                            'assets/global_images/Website-Logo-Shadowed.png'),
+                        iconText: 'Website',
+                        iconColor: Color(0xff2771BB),
+                        iconFunction: () async {
+                          await launch('http://flutterbuddies.com');
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-            ProjectCard(
-              projectTitle: 'Tic-Tac-No',
-              projectDescription:
-                  'An app that is like tac tac tow but with an added twist. Looking for new developers to contribute.',
-              projectImage: AssetImage('assets/global_images/flutter-logo.png'),
-              projectTag: 'Ongoing',
-            ),
-            ProjectCard(
-              projectTitle: 'Tic-Tac-No',
-              projectDescription:
-                  'An app that is like tac tac tow but with an added twist. Looking for new developers to contribute.',
-              projectImage: AssetImage('assets/global_images/flutter-logo.png'),
-              projectTag: 'Ongoing',
+            SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  SectionHeader(
+                    leadingIcon: Icons.calendar_today,
+                    headerText: 'Upcoming Events',
+                    headerFunction: () {
+                      print('Upcoming Events Pressed');
+                    },
+                    trailingWidget: Text(
+                      'See more',
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ),
+                  GridView.count(
+                    // Shrink wrap tells the grid view to let the children define the size
+                    shrinkWrap: true,
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    mainAxisSpacing: 16,
+                    crossAxisSpacing: 16,
+                    // Setting to none so that the shadow isn't clipped
+                    clipBehavior: Clip.none,
+                    childAspectRatio: 0.85,
+                    crossAxisCount: 2,
+                    physics: NeverScrollableScrollPhysics(),
+                    children: [
+                      EventCard(
+                        eventName: 'Flutter talks: State management solutions',
+                        eventDateTime: DateTime.now(),
+                        eventImage:
+                            AssetImage('assets/global_images/flutter-logo.png'),
+                      ),
+                      EventCard(
+                        eventName: 'Flutter talks: State management solutions',
+                        eventDateTime: DateTime.now(),
+                        eventImage:
+                            AssetImage('assets/global_images/flutter-logo.png'),
+                      ),
+                      EventCard(
+                        eventName: 'Flutter talks: State management solutions',
+                        eventDateTime: DateTime.now(),
+                        eventImage:
+                            AssetImage('assets/global_images/flutter-logo.png'),
+                      ),
+                      EventCard(
+                        eventName: 'Flutter talks: State management solutions',
+                        eventDateTime: DateTime.now(),
+                        eventImage:
+                            AssetImage('assets/global_images/flutter-logo.png'),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  SectionHeader(
+                    leadingIcon: Icons.people,
+                    headerText: 'Member pages',
+                    headerFunction: () {
+                      Navigator.pushNamed(context, 'user_widgets_screen');
+                    },
+                    trailingWidget: Row(
+                      children: [
+                        Container(
+                          height: 10,
+                          width: 10,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle, color: Colors.green),
+                        ),
+                        SizedBox(
+                          width: 4,
+                        ),
+                        FutureBuilder<int>(
+                          future: getDiscordOnlineNumber(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              return Text('${snapshot.data} members online');
+                            } else {
+                              return Text('Loading...');
+                            }
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    // Todo: Get the data for the MemberCircle widgets from the list
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      MemberCircle(
+                        memberName: 'Developer 1',
+                        memberImage:
+                            AssetImage('assets/global_images/flutter-logo.png'),
+                      ),
+                      MemberCircle(
+                        memberName: 'Developer 2',
+                        memberImage:
+                            AssetImage('assets/global_images/flutter-logo.png'),
+                      ),
+                      MemberCircle(
+                        memberName: 'Developer 3',
+                        memberImage:
+                            AssetImage('assets/global_images/flutter-logo.png'),
+                      ),
+                      MemberCircle(
+                        memberName: 'Developer 4',
+                        memberImage:
+                            AssetImage('assets/global_images/flutter-logo.png'),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  SectionHeader(
+                    leadingIcon: FontAwesomeIcons.hammer,
+                    headerText: 'Active Projects',
+                    headerFunction: () {
+                      print('Active Projects Pressed');
+                    },
+                    trailingWidget: Text(
+                      'See more',
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ),
+                  ProjectCard(
+                    projectTitle: 'Tic-Tac-No',
+                    projectDescription:
+                        'An app that is like tac tac tow but with an added twist. Looking for new developers to contribute.',
+                    projectImage:
+                        AssetImage('assets/global_images/flutter-logo.png'),
+                    projectTag: 'Ongoing',
+                  ),
+                  ProjectCard(
+                    projectTitle: 'Tic-Tac-No',
+                    projectDescription:
+                        'An app that is like tac tac tow but with an added twist. Looking for new developers to contribute.',
+                    projectImage:
+                        AssetImage('assets/global_images/flutter-logo.png'),
+                    projectTag: 'Ongoing',
+                  ),
+                ],
+              ),
             ),
           ],
         ),
