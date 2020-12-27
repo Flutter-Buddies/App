@@ -21,6 +21,7 @@ part 'widget_info.dart'; //defines the widget info abstract class
 part 'example/example.dart';
 part 'zambrella/zambrella_widget.dart';
 
+
 // TODO: 5. Add your Widget Info class object from step 4a to the list
 List<WidgetInfo> widgetInfoList = [
   exampleInfo,
