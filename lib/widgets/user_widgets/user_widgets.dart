@@ -4,8 +4,8 @@ library user_widgets;
 // add your required dependencies here
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'widget_info.dart'; //defines the abstract info class
-
+//import 'widget_info.dart'; //<-- delete
+part 'widget_info.dart'; //defines the widget info abstract class
 // You need do the following to add your widget to the project
 // TODO: 1. Add "part of user_widgets;" to your widget file.
 // TODO: 2. Add "part <path_to>/<your_filename>.dart;" below.
@@ -18,7 +18,7 @@ part 'example/example.dart';
 ExampleInfo exampleInfo = ExampleInfo();
 
 // TODO: 5. Add your Widget Info class to the list
-List<dynamic> widgetInfoList = [
+List<WidgetInfo> widgetInfoList = [
   exampleInfo,
   // <-- add your widgetinfo class here
 ];

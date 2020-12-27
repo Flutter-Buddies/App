@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_buddies/widgets/user_widgets/user_widgets.dart';
+//import 'package:flutter_buddies/widgets/user_widgets/widget_info.dart';
+
+List<WidgetInfo> widgetList = widgetInfoList;
 
 class HomeScreen extends StatelessWidget {
   @override
