@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_buddies/widgets/user_widgets/user_widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -160,7 +161,15 @@ class _HomeScreenState extends State<HomeScreen> {
               },
               trailingWidget: Row(
                 children: [
-                  Icon(FontAwesomeIcons.discord),
+                  Container(
+                    height: 10,
+                    width: 10,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle, color: Colors.green),
+                  ),
+                  SizedBox(
+                    width: 4,
+                  ),
                   FutureBuilder<int>(
                     future: getDiscordOnlineNumber(),
                     builder: (context, snapshot) {
@@ -456,6 +465,7 @@ class SectionHeader extends StatelessWidget {
       child: GestureDetector(
         onTap: headerFunction,
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
