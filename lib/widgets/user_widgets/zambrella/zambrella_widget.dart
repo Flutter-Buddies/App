@@ -6,6 +6,7 @@ class Zambrella extends WidgetInfo {
   get description =>
       "DOTA player | Flutter Developer | Biochemistry Graduate | Tech Enthusiast | Metal Music Lover";
   get developer => "Doug Todd"; //use any name for yourself
+  // add logo image for list display
   get widget => ZambrellaWidget();
 }
 

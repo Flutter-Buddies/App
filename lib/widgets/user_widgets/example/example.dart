@@ -5,8 +5,11 @@ class ExampleInfo extends WidgetInfo {
   get name => 'My Widget';
   get description => "This is an example of a basic widget";
   get developer => "Joey Marino"; //use any name for yourself
+  get logoPath => "assets/profile_logos/flutter_buddy.png";
   get widget => ExampleWidget();
 }
+
+ExampleInfo exampleInfo = ExampleInfo();
 
 // User's widget lives here
 class ExampleWidget extends StatelessWidget {
