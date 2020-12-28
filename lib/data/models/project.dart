@@ -1,23 +1,34 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 
+String _makeTag(bool archived, bool disabled) {
+  if (archived) {
+    return 'Archived';
+  }
+  if (disabled) {
+    return 'Disabled';
+  }
+  return 'Active';
+}
+
 class Project {
   final String title;
   final String description;
   final ImageProvider image;
   final String tag;
 
-  // TODO we'll see how attributes are called in GitHub API
   Project.fromJson(Map<String, dynamic> json)
-      : title = json['title'],
+      : title = json['name'],
         description = json['description'],
-        image = NetworkImage(json['imageUrl']),
-        tag = json['tag'];
+        image = NetworkImage('https://picsum.photos/seed/' +
+            faker.lorem.word() +
+            '/600'), // TODO
+        tag = _makeTag(json['archived'], json['disabled']);
 
   static Project get fake {
     final Faker faker = Faker();
     return Project.fromJson({
-      'title': faker.lorem
+      'name': faker.lorem
           .words(
             faker.randomGenerator.integer(4, min: 1),
           )
@@ -28,10 +39,8 @@ class Project {
           )
           .join(' '),
       'imageUrl': 'https://picsum.photos/seed/' + faker.lorem.word() + '/600',
-      'tag': [
-        'Ongoing',
-        'Done',
-      ][faker.randomGenerator.integer(1)],
+      'archived': false,
+      'disabled': false,
     });
   }
 }

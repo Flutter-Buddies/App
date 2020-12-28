@@ -6,23 +6,22 @@ import 'package:flutter_buddies/data/models/project.dart';
 class ProjectRepository {
   List<Project> _projects = [];
 
-  static ProjectRepository get() => FakeProjectRepository();
+  static ProjectRepository get() => ProjectRepository();
 
-  // TODO
   Future<List<Project>> fetchAll({bool fresh: false}) async {
     if (_projects.isEmpty || fresh) {
       // fetch projects from GitHub API
-      // final response = await GithubApi.getProjects();
-      // or just
-      // final response = await http.get('github-projects-api');
-      // if (response.statusCode != 200) {
-      //    handle error
-      // } else {
-      //   decode body if response status is OK
-      //   final List<Map<String, dynamic>> projectsJson = json.decode(response.body);
-      //   transform to Projects
-      //   _projects = projectsJson.map((json) => Project.fromJson(json)).toList();
-      // }
+      final response =
+          await http.get('https://api.github.com/orgs/Flutter-Buddies/repos');
+      if (response.statusCode != 200) {
+        // TODO handle error
+        print('ERROR ${response.statusCode}: ${response.reasonPhrase}');
+      } else {
+        // decode body if response status is OK
+        final List<dynamic> projectsJson = json.decode(response.body);
+        // transform to Projects
+        _projects = projectsJson.map((json) => Project.fromJson(json)).toList();
+      }
     }
     return _projects;
   }
