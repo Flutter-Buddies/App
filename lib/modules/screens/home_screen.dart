@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_buddies/data/models/event.dart';
+import 'package:flutter_buddies/data/repositories/event_repository.dart';
 //import 'package:flutter_buddies/widgets/user_widgets/user_widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
@@ -9,6 +11,8 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatefulWidget {
+  final EventRepository eventRepository = EventRepository.get();
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -117,43 +121,38 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  GridView.count(
-                    // Shrink wrap tells the grid view to let the children define the size
-                    shrinkWrap: true,
-                    padding: EdgeInsets.symmetric(horizontal: 16),
-                    mainAxisSpacing: 16,
-                    crossAxisSpacing: 16,
-                    // Setting to none so that the shadow isn't clipped
-                    clipBehavior: Clip.none,
-                    childAspectRatio: 0.85,
-                    crossAxisCount: 2,
-                    physics: NeverScrollableScrollPhysics(),
-                    children: [
-                      EventCard(
-                        eventName: 'Flutter talks: State management solutions',
-                        eventDateTime: DateTime.now(),
-                        eventImage:
-                            AssetImage('assets/global_images/flutter-logo.png'),
-                      ),
-                      EventCard(
-                        eventName: 'Flutter talks: State management solutions',
-                        eventDateTime: DateTime.now(),
-                        eventImage:
-                            AssetImage('assets/global_images/flutter-logo.png'),
-                      ),
-                      EventCard(
-                        eventName: 'Flutter talks: State management solutions',
-                        eventDateTime: DateTime.now(),
-                        eventImage:
-                            AssetImage('assets/global_images/flutter-logo.png'),
-                      ),
-                      EventCard(
-                        eventName: 'Flutter talks: State management solutions',
-                        eventDateTime: DateTime.now(),
-                        eventImage:
-                            AssetImage('assets/global_images/flutter-logo.png'),
-                      ),
-                    ],
+                  FutureBuilder<List<Event>>(
+                    future: widget.eventRepository.take(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return GridView.count(
+                          // Shrink wrap tells the grid view to let the children define the size
+                          shrinkWrap: true,
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          mainAxisSpacing: 16,
+                          crossAxisSpacing: 16,
+                          // Setting to none so that the shadow isn't clipped
+                          clipBehavior: Clip.none,
+                          childAspectRatio: 0.85,
+                          crossAxisCount: 2,
+                          physics: NeverScrollableScrollPhysics(),
+                          children: snapshot.data
+                              .map((event) => EventCard(
+                                    eventName: event.name,
+                                    eventImage: event.image,
+                                    eventDateTime: event.dateTime,
+                                  ))
+                              .toList(),
+                        );
+                      } else {
+                        return SizedBox(
+                          height: 240,
+                          child: Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        );
+                      }
+                    },
                   ),
                   SizedBox(
                     height: 8,
