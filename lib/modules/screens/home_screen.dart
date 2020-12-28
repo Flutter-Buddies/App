@@ -13,9 +13,6 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatefulWidget {
-  final EventRepository eventRepository = EventRepository.get();
-  final ProjectRepository projectRepository = ProjectRepository.get();
-
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -29,6 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
     dynamic numberOnline = decoded['presence_count'];
     return numberOnline;
   }
+
+  final EventRepository _eventRepository = EventRepository.get();
+  final ProjectRepository _projectRepository = ProjectRepository.get();
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   FutureBuilder<List<Event>>(
-                    future: widget.eventRepository.take(),
+                    future: _eventRepository.take(),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         return GridView.count(
@@ -233,7 +233,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   FutureBuilder<List<Project>>(
-                    future: widget.projectRepository.take(),
+                    future: _projectRepository.take(),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         return Column(
