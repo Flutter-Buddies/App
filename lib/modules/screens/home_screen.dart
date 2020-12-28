@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_buddies/data/models/event.dart';
+import 'package:flutter_buddies/data/models/project.dart';
 import 'package:flutter_buddies/data/repositories/event_repository.dart';
+import 'package:flutter_buddies/data/repositories/project_repository.dart';
 //import 'package:flutter_buddies/widgets/user_widgets/user_widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
@@ -12,6 +14,7 @@ import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatefulWidget {
   final EventRepository eventRepository = EventRepository.get();
+  final ProjectRepository projectRepository = ProjectRepository.get();
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -229,21 +232,29 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  ProjectCard(
-                    projectTitle: 'Tic-Tac-No',
-                    projectDescription:
-                        'An app that is like tac tac tow but with an added twist. Looking for new developers to contribute.',
-                    projectImage:
-                        AssetImage('assets/global_images/flutter-logo.png'),
-                    projectTag: 'Ongoing',
-                  ),
-                  ProjectCard(
-                    projectTitle: 'Tic-Tac-No',
-                    projectDescription:
-                        'An app that is like tac tac tow but with an added twist. Looking for new developers to contribute.',
-                    projectImage:
-                        AssetImage('assets/global_images/flutter-logo.png'),
-                    projectTag: 'Ongoing',
+                  FutureBuilder<List<Project>>(
+                    future: widget.projectRepository.take(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return Column(
+                          children: snapshot.data
+                              .map((project) => ProjectCard(
+                                    projectTitle: project.title,
+                                    projectDescription: project.description,
+                                    projectImage: project.image,
+                                    projectTag: project.tag,
+                                  ))
+                              .toList(),
+                        );
+                      } else {
+                        return SizedBox(
+                          height: 240,
+                          child: Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        );
+                      }
+                    },
                   ),
                 ],
               ),
