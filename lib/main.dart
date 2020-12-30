@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_buddies/constants/app_constants.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'modules/screens/user_widgets_screen.dart';
 import 'modules/screens/home_screen.dart';
 
-void main() {
+Future main() async {
+  await DotEnv().load('.env');
   runApp(MyApp());
 }
 
