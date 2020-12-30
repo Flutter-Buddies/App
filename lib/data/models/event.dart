@@ -6,22 +6,25 @@ class Event {
   final ImageProvider image;
   final DateTime dateTime;
 
-  // TODO we'll see how attributes are called in calendar API
   Event.fromJson(Map<String, dynamic> json)
-      : name = json['name'],
-        image = NetworkImage(json['imageUrl']),
-        dateTime = DateTime.parse(json['dateTime']);
+      : name = json['summary'],
+        image = NetworkImage(
+            'https://picsum.photos/seed/' + faker.lorem.word() + '/600'),
+        dateTime = DateTime.parse(json['start']['dateTime']);
 
   static Event get fake {
     final Faker faker = Faker();
     return Event.fromJson({
-      'name': faker.lorem
+      'summary': faker.lorem
           .words(
             faker.randomGenerator.integer(6, min: 1),
           )
           .join(' '),
       'imageUrl': 'https://picsum.photos/seed/' + faker.lorem.word() + '/600',
-      'dateTime': faker.date.dateTime(minYear: 2020, maxYear: 2022).toString(),
+      'start': {
+        'dateTime':
+            faker.date.dateTime(minYear: 2020, maxYear: 2022).toString(),
+      }
     });
   }
 }
