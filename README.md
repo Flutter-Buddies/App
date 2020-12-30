@@ -3,6 +3,10 @@ A flutter app with for mobile download and mobile web with community features li
 
 This app will (hopefully) get published to the app stores and shared among our brand, so get your name in the list.
 
+## Contribution notice
+
+Before you start contributing, you need to rename `.env-example` file to `.env`. This is mandatory for app to build and is enough to get you going, but you won't see any events in app. If you wish to contribute to events part of the app, ask admins to give you the key.
+
 ## Adding your widget to the app
 The app will have a list of member user created widgets to display.  
 The app will push your widget on as a new page, but you can have multiple pages.  
