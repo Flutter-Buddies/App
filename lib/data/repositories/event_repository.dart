@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter_buddies/data/models/event.dart';
@@ -7,23 +8,25 @@ import 'package:flutter_buddies/data/models/event.dart';
 class EventRepository {
   List<Event> _events = [];
 
-  static EventRepository get() => FakeEventRepository();
+  static EventRepository get() => EventRepository();
 
   // TODO
   Future<List<Event>> fetchAll({bool fresh: false}) async {
     if (_events.isEmpty || fresh) {
       // fetch events from calendar API
-      // final response = await CalendarApi.getEvents();
-      // or just
-      // final response = await http.get('calendar-api');
-      // if (response.statusCode != 200) {
-      //    handle error
-      // } else {
-      //   decode body if response status is OK
-      //   final List<Map<String, dynamic>> eventsJson = json.decode(response.body);
-      //   transform to Events
-      //   _events = eventsJson.map((json) => Event.fromJson(json)).toList();
-      // }
+      final response = await http.get(
+          'https://www.googleapis.com/calendar/v3/calendars/gh1n5rutlqgsjpvqrba97e9atk@group.calendar.google.com/events?key=' +
+              DotEnv().env['CALENDAR_KEY']);
+      if (response.statusCode != 200) {
+        // handle error
+        print('ERROR ${response.statusCode}: ${response.reasonPhrase}');
+      } else {
+        // decode body if response status is OK
+        final Map<String, dynamic> eventsJson = json.decode(response.body);
+        final List<dynamic> eventItems = eventsJson['items'];
+        // transform to Events
+        _events = eventItems.map((json) => Event.fromJson(json)).toList();
+      }
     }
     return _events;
   }
