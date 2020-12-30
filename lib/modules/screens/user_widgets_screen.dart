@@ -14,6 +14,17 @@ class UserWidgetsScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: kDarkBlue,
         title: Text('Developer Widgets'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: CustomSearchDelegate(),
+              );
+            },
+          ),
+        ],
       ),
       body: ListView.builder(
         itemCount: widgetInfoList.length,
@@ -35,6 +46,87 @@ class UserWidgetsScreen extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+}
+
+// Mostly just followed this article: https://medium.com/codechai/implementing-search-in-flutter-17dc5aa72018
+class CustomSearchDelegate extends SearchDelegate {
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: Icon(Icons.clear),
+        onPressed: () {
+          query = '';
+        },
+      ),
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.arrow_back),
+      onPressed: () {
+        close(context, null);
+      },
+    );
+  }
+
+  // Called when the user presses search/enter on keyboard
+  @override
+  Widget buildResults(BuildContext context) {
+    // query is a built in getter of [SearchDelegate]
+    List<WidgetInfo> filteredList = widgetInfoList
+        .where((object) =>
+            object.developer.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+
+    if (filteredList.isEmpty) {
+      return Center(child: Text('No results found :('));
+    }
+    return ListView.builder(
+      itemCount: filteredList.length,
+      itemBuilder: (context, index) {
+        return InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => filteredList[index].widget,
+              ),
+            );
+          },
+          child: ListTile(
+            title: Text(filteredList[index].developer),
+          ),
+        );
+      },
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    // This is where the suggestions are built
+    return Column();
+  }
+
+  @override
+  ThemeData appBarTheme(BuildContext context) {
+    assert(context != null);
+    final ThemeData theme = Theme.of(context);
+    assert(theme != null);
+    return theme.copyWith(
+      primaryColor: kDarkBlue,
+      primaryIconTheme: theme.primaryIconTheme.copyWith(color: Colors.white),
+      primaryColorBrightness: Brightness.dark,
+      // primaryTextTheme: theme.textTheme,
+      textTheme: Theme.of(context).textTheme.apply(
+            bodyColor: Colors.white,
+            displayColor: Colors.white,
+          ),
+      // Can't find a way to change the hint text colour to white :(
     );
   }
 }
@@ -111,6 +203,7 @@ class DeveloperCard extends StatelessWidget {
 
 class AngledLine extends CustomPainter {
   final Color shapeColor;
+  // Version can either be 'Side' or 'Top'
   final String version;
 
   AngledLine({this.shapeColor, this.version});
