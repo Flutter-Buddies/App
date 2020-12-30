@@ -6,7 +6,7 @@ import 'package:flutter_buddies/data/models/event.dart';
 import 'package:flutter_buddies/data/models/project.dart';
 import 'package:flutter_buddies/data/repositories/event_repository.dart';
 import 'package:flutter_buddies/data/repositories/project_repository.dart';
-//import 'package:flutter_buddies/widgets/user_widgets/user_widgets.dart';
+import 'package:flutter_buddies/widgets/user_widgets/user_widgets.dart' as uw;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -26,6 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
     dynamic numberOnline = decoded['presence_count'];
     return numberOnline;
   }
+
+  // Get the list of users and shuffle it so different users are shown on the front page each time
+  var widgetInfoList = uw.widgetInfoList..shuffle();
 
   final EventRepository _eventRepository = EventRepository.get();
   final ProjectRepository _projectRepository = ProjectRepository.get();
@@ -191,28 +194,28 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Row(
-                    // Todo: Get the data for the MemberCircle widgets from the list
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       MemberCircle(
-                        memberName: 'Developer 1',
+                        memberName: '${widgetInfoList[0].developer}',
                         memberImage:
-                            AssetImage('assets/global_images/flutter-logo.png'),
+                            AssetImage('${widgetInfoList[0].logoPath}'),
                       ),
                       MemberCircle(
-                        memberName: 'Developer 2',
+                        memberName: '${widgetInfoList[1].developer}',
                         memberImage:
-                            AssetImage('assets/global_images/flutter-logo.png'),
+                            AssetImage('${widgetInfoList[1].logoPath}'),
                       ),
                       MemberCircle(
-                        memberName: 'Developer 3',
+                        memberName: '${widgetInfoList[2].developer}',
                         memberImage:
-                            AssetImage('assets/global_images/flutter-logo.png'),
+                            AssetImage('${widgetInfoList[2].logoPath}'),
                       ),
                       MemberCircle(
-                        memberName: 'Developer 4',
+                        memberName: '${widgetInfoList[3].developer}',
                         memberImage:
-                            AssetImage('assets/global_images/flutter-logo.png'),
+                            AssetImage('${widgetInfoList[3].logoPath}'),
                       ),
                     ],
                   ),
