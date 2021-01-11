@@ -84,8 +84,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             'assets/global_images/Twitter-Logo-Shadowed.png'),
                         iconText: 'Twitter',
                         iconColor: Color(0xff00A2F5),
-                        iconFunction: () {
-                          // Todo: Add twitter link
+                        iconFunction: () async {
+                          await launch('https://twitter.com/Flutter_Buddies');
                         },
                       ),
                       AppBarIcon(
@@ -93,8 +93,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             'assets/global_images/YouTube-Logo-Shadowed.png'),
                         iconText: 'YouTube',
                         iconColor: Color(0xffFF0000),
-                        iconFunction: () {
-                          // Todo: Add YouTube link
+                        iconFunction: () async {
+                          await launch(
+                              'https://www.youtube.com/channel/UCxBpCSJUJFj26S-4KwNNR1w');
                         },
                       ),
                       AppBarIcon(
@@ -103,7 +104,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         iconText: 'Website',
                         iconColor: Color(0xff2771BB),
                         iconFunction: () async {
-                          await launch('http://flutterbuddies.com');
+                          await launch(
+                              'https://github.com/Flutter-Buddies/README');
                         },
                       ),
                     ],
