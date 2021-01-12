@@ -8,6 +8,9 @@ import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart'; // Added so we can link to socials or Discord
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+// imports for Goober's developer widget
+import 'goober0329/qr_game_of_life/gol_glider.dart';
+
 part 'widget_info.dart'; //defines the widget info abstract class
 
 // You need do the following to add your widget to the project

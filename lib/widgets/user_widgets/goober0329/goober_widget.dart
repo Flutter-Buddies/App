@@ -37,7 +37,16 @@ class GooberWidget extends StatelessWidget {
                   divider(),
                   aboutMe(),
                   divider(),
-                  Center(child: Text("TODO")),
+                  widgetDisplay(
+                    text: "Game of Life Glider",
+                    widget: Center(
+                      child: GoLGlider(
+                        gliderSize: MediaQuery.of(context).size.width * 0.6,
+                        color: Color(0xFF00DE59),
+                        moduleCornerRadius: 0.4,
+                      ),
+                    ),
+                  ),
                   divider(),
                   Center(child: Text("TODO")),
                   divider(),
@@ -52,6 +61,24 @@ class GooberWidget extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget widgetDisplay({String text = "", @required Widget widget}) {
+  return Column(
+    children: [
+      Padding(
+        padding: const EdgeInsets.symmetric(vertical: 15.0),
+        child: Text(
+          text,
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      widget,
+    ],
+  );
 }
 
 Divider divider() {
@@ -69,11 +96,11 @@ Widget aboutMe() {
     padding: const EdgeInsets.symmetric(horizontal: 30),
     child: Text(
       "I graduated from Iowa State University with a degree in Materials Engineering."
-          " Along with my interest for Materials Engineering I also actively pursue"
-          " my interest in programming. Recently I started learning Flutter in my"
-          " spare time and I have really loved the language."
-          "\n\nBelow are some of the widgets I have made while working on "
-          "different apps and projects. Enjoy!",
+      " Along with my interest for Materials Engineering I also actively pursue"
+      " my interest in programming. Recently I started learning Flutter in my"
+      " spare time and I have really loved the language."
+      "\n\nBelow are some of the widgets I have made while working on "
+      "different apps and projects. Enjoy!",
       style: TextStyle(fontSize: 16),
       textAlign: TextAlign.center,
     ),
