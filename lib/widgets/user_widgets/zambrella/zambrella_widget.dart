@@ -260,8 +260,9 @@ class _ProfileImageState extends State<ProfileImage>
   }
 
   @override
-  void deactivate() {
+  void dispose() {
     _animationController.dispose();
+    super.dispose();
   }
 
   @override
