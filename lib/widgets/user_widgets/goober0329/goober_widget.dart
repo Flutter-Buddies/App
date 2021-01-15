@@ -38,7 +38,7 @@ class GooberWidget extends StatelessWidget {
                   aboutMe(),
                   divider(),
                   widgetDisplay(
-                    text: "Game of Life Glider",
+                    text: "Game of Life Glider Animation",
                     widget: Center(
                       child: GoLGlider(
                         gliderSize: MediaQuery.of(context).size.width * 0.6,
@@ -100,7 +100,8 @@ Widget aboutMe() {
       " my interest in programming. Recently I started learning Flutter in my"
       " spare time and I have really loved the language."
       "\n\nBelow are some of the widgets I have made while working on "
-      "different apps and projects. Enjoy!",
+      "different apps and projects."
+      "\nEnjoy!",
       style: TextStyle(fontSize: 16),
       textAlign: TextAlign.center,
     ),
