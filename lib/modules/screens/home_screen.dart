@@ -6,6 +6,10 @@ import 'package:flutter_buddies/data/models/event.dart';
 import 'package:flutter_buddies/data/models/project.dart';
 import 'package:flutter_buddies/data/repositories/event_repository.dart';
 import 'package:flutter_buddies/data/repositories/project_repository.dart';
+import 'package:flutter_buddies/widgets/app_bar_icon.dart';
+import 'package:flutter_buddies/widgets/event_card.dart';
+import 'package:flutter_buddies/widgets/project_card.dart';
+import 'package:flutter_buddies/widgets/section_header.dart';
 import 'package:flutter_buddies/widgets/user_widgets/user_widgets.dart' as uw;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
@@ -120,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     leadingIcon: Icons.calendar_today,
                     headerText: 'Upcoming Events',
                     headerFunction: () {
-                      print('Upcoming Events Pressed');
+                      Navigator.pushNamed(context, 'schedule');
                     },
                     trailingWidget: Text(
                       'See more',
@@ -228,7 +232,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     leadingIcon: FontAwesomeIcons.hammer,
                     headerText: 'Active Projects',
                     headerFunction: () {
-                      print('Active Projects Pressed');
+                      Navigator.pushNamed(context, 'projects');
                     },
                     trailingWidget: Text(
                       'See more',
@@ -260,90 +264,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       }
                     },
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class ProjectCard extends StatelessWidget {
-  final String projectTitle;
-  final String projectDescription;
-  final ImageProvider projectImage;
-  final String projectTag;
-  ProjectCard(
-      {this.projectTitle,
-      this.projectDescription,
-      this.projectImage,
-      this.projectTag});
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-      child: Container(
-        clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.3),
-              spreadRadius: 3,
-              blurRadius: 3,
-              offset: Offset(0, 1),
-            )
-          ],
-        ),
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: 120,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: projectImage,
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 10,
-                  right: 10,
-                  child: Container(
-                    padding: EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                      color: Color(0xff065A9D),
-                      borderRadius: BorderRadius.circular(3),
-                    ),
-                    child: Text(
-                      projectTag,
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Container(
-              padding: EdgeInsets.all(8),
-              color: Colors.white,
-              width: double.infinity,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    projectTitle,
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    projectDescription,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),
@@ -388,154 +308,6 @@ class MemberCircle extends StatelessWidget {
             )
           ],
         ),
-      ),
-    );
-  }
-}
-
-class EventCard extends StatelessWidget {
-  final ImageProvider eventImage;
-  final DateTime eventDateTime;
-  final String eventName;
-  EventCard({this.eventImage, this.eventDateTime, this.eventName});
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(6),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.3),
-            spreadRadius: 3,
-            blurRadius: 3,
-            offset: Offset(0, 1),
-          )
-        ],
-      ),
-      child: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          // Image at the bottom
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: eventImage,
-              ),
-            ),
-          ),
-          // Gradient over the image to make the text clear
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.topCenter,
-                  colors: [Colors.black.withOpacity(0.75), Colors.transparent]),
-            ),
-          ),
-          // Text over the top
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                // I've decided to have the date resize based on the width because the date should always be visible
-                FittedBox(
-                  alignment: Alignment.centerLeft,
-                  fit: BoxFit.scaleDown,
-                  child: Text(
-                    DateFormat('MMMEd').format(eventDateTime) +
-                        ' ' +
-                        DateFormat.Hm().format(eventDateTime) +
-                        ' UTC',
-                    maxLines: 1,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w300),
-                  ),
-                ),
-                // For the name of the event, it will be much more variabel in length so I'm happy to have an overflow and keep the text size constant
-                Text(
-                  eventName,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class SectionHeader extends StatelessWidget {
-  final IconData leadingIcon;
-  final String headerText;
-  final Widget trailingWidget;
-  final Function headerFunction;
-  SectionHeader(
-      {this.leadingIcon,
-      this.headerText,
-      this.trailingWidget,
-      this.headerFunction});
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: GestureDetector(
-        onTap: headerFunction,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              child: Row(
-                children: [
-                  Icon(leadingIcon),
-                  SizedBox(
-                    width: 4,
-                  ),
-                  Text(
-                    headerText + '  >',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  ),
-                ],
-              ),
-            ),
-            trailingWidget,
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class AppBarIcon extends StatelessWidget {
-  final String iconText;
-  final Function iconFunction;
-  final Color iconColor;
-  final ImageProvider iconImage;
-  AppBarIcon(
-      {this.iconText, this.iconFunction, this.iconColor, this.iconImage});
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: iconFunction,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Image(
-            image: iconImage,
-            height: 42,
-          ),
-          Text(iconText),
-        ],
       ),
     );
   }

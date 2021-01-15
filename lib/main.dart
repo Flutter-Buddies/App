@@ -4,6 +4,8 @@ import 'package:flutter_buddies/constants/app_constants.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'modules/screens/user_widgets_screen.dart';
 import 'modules/screens/home_screen.dart';
+import 'modules/screens/projects_screen.dart';
+import 'modules/screens/schedule_screen.dart';
 
 Future main() async {
   await DotEnv().load('.env');
@@ -23,6 +25,8 @@ class MyApp extends StatelessWidget {
         routes: {
           'home': (context) => HomeScreen(),
           'user_widgets_screen': (context) => UserWidgetsScreen(),
+          'schedule': (context) => ScheduleScreen(),
+          'projects': (context) => ProjectsScreen(),
         });
   }
 }
