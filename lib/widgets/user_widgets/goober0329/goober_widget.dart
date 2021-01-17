@@ -119,8 +119,8 @@ Widget aboutMe() {
       " Along with my interest for Materials Engineering I also actively pursue"
       " my interest in programming. Recently I started learning Flutter in my"
       " spare time and I have really loved the language."
-      "\n\nBelow are some of the widgets I have made while working on "
-      "different apps and projects."
+      "\n\nBelow are some of my favorite widgets that I have made while working on "
+      "different projects."
       "\nEnjoy!",
       style: TextStyle(fontSize: 16),
       textAlign: TextAlign.center,
