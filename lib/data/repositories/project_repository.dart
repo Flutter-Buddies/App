@@ -30,6 +30,10 @@ class ProjectRepository {
     await this.fetchAll();
     return _projects.take(count).toList();
   }
+
+  Future<List<Project>> takeAll() async {
+    return await this.fetchAll();
+  }
 }
 
 class FakeProjectRepository extends ProjectRepository {

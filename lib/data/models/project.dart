@@ -11,6 +11,11 @@ String _makeTag(bool archived, bool disabled) {
   return 'Active';
 }
 
+//Todo: clean name
+//Todo: allow null description
+//Todo: Bring in more details for full list
+//Todo: figure out images from repo
+
 class Project {
   final String title;
   final String description;

@@ -260,6 +260,12 @@ class _ProfileImageState extends State<ProfileImage>
   }
 
   @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(16),
