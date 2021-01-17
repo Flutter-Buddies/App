@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:flutter_buddies/widgets/user_widgets/goober0329/qr_game_of_life/game_of_life.dart';
+import 'package:flutter_buddies/widgets/user_widgets/goober0329/qr_game_of_life/game_of_life_model.dart';
 
 class GoLController extends ChangeNotifier {
   Duration timeStep;
@@ -12,10 +12,9 @@ class GoLController extends ChangeNotifier {
 
   bool get isActive => _active;
 
-  void start(GameOfLife gol) {
-    _timer = Timer.periodic(timeStep, (timer) => _nextStep(gol));
+  void start(GameOfLife gol, Function callBack) {
+    _timer = Timer.periodic(timeStep, (timer) => _nextStep(gol, callBack));
     _active = true;
-    notifyListeners();
   }
 
   void stop() {
@@ -23,11 +22,11 @@ class GoLController extends ChangeNotifier {
       _timer.cancel();
     }
     _active = false;
-    notifyListeners();
   }
 
-  void _nextStep(GameOfLife gol) {
+  void _nextStep(GameOfLife gol, Function callBack) {
     gol.step();
+    callBack();
   }
 
   void setSpeed(Duration newTimeStep) {

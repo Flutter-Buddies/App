@@ -42,16 +42,16 @@ class GoLGlider extends StatefulWidget {
     ],
   ];
   final double gliderSize;
-  final double moduleCornerRadius;
+  final double cornerRadiusRatio;
   final Duration duration;
   final Color color;
 
   GoLGlider({
     @required this.gliderSize,
-    this.moduleCornerRadius = 0,
+    this.cornerRadiusRatio = 0,
     this.color = Colors.black,
     this.duration = const Duration(milliseconds: 1500),
-  }) : assert(moduleCornerRadius <= 1);
+  }) : assert(cornerRadiusRatio <= 1);
 
   @override
   _GoLGliderState createState() => _GoLGliderState();
@@ -69,6 +69,8 @@ class _GoLGliderState extends State<GoLGlider>
   int curState;
   AnimationController _controller;
 
+  bool playing = false;
+
   @override
   void initState() {
     super.initState();
@@ -81,7 +83,7 @@ class _GoLGliderState extends State<GoLGlider>
       decoration: BoxDecoration(
         color: widget.color,
         borderRadius:
-            BorderRadius.circular(widget.moduleCornerRadius * moduleSize / 2),
+            BorderRadius.circular(widget.cornerRadiusRatio * moduleSize),
       ),
     );
 
@@ -95,7 +97,6 @@ class _GoLGliderState extends State<GoLGlider>
       duration: widget.duration,
     );
     _controller.addListener(updateModulePositions);
-    _controller.forward();
   }
 
   @override
@@ -108,62 +109,88 @@ class _GoLGliderState extends State<GoLGlider>
   /// moves toward the top left corner based on the controller value, and the
   /// glider transitions through its four states during that period of time too.
   void updateModulePositions() {
-    int newState = (_controller.value * 4).floor();
-    int nextIter = newState == 4 ? 1 : 0;
-    if (newState != curState && newState != 0) {
-      for (int i = 0; i < modulePositions.length; i++) {
-        modulePositions[i][0] +=
-            widget.modulePositionStateChange[newState - 1][i][0] - nextIter;
-        modulePositions[i][1] +=
-            widget.modulePositionStateChange[newState - 1][i][1] - nextIter;
+    if (playing) {
+      int newState = (_controller.value * 4).floor();
+      int nextIter = newState == 4 ? 1 : 0;
+      if (newState != curState && newState != 0) {
+        for (int i = 0; i < modulePositions.length; i++) {
+          modulePositions[i][0] +=
+              widget.modulePositionStateChange[newState - 1][i][0] - nextIter;
+          modulePositions[i][1] +=
+              widget.modulePositionStateChange[newState - 1][i][1] - nextIter;
+        }
+        curState = newState;
       }
-      curState = newState;
-    }
 
-    setState(() {
-      gliderOff = gliderOffInit - _controller.value * moduleSize;
-    });
+      setState(() {
+        gliderOff = gliderOffInit - _controller.value * moduleSize;
+      });
 
-    if (_controller.isCompleted) {
-      _controller.reset();
-      _controller.forward();
+      if (_controller.isCompleted) {
+        _controller.reset();
+        _controller.forward();
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: widget.gliderSize,
-      height: widget.gliderSize,
-      child: Stack(
-        children: [
-          Positioned(
-            left: modulePositions[0][0] * moduleSize + gliderOff,
-            top: modulePositions[0][1] * moduleSize + gliderOff,
-            child: module,
+    return Column(
+      children: [
+        Container(
+          width: widget.gliderSize,
+          height: widget.gliderSize,
+          child: Stack(
+            children: [
+              Positioned(
+                left: modulePositions[0][0] * moduleSize + gliderOff,
+                top: modulePositions[0][1] * moduleSize + gliderOff,
+                child: module,
+              ),
+              Positioned(
+                left: modulePositions[1][0] * moduleSize + gliderOff,
+                top: modulePositions[1][1] * moduleSize + gliderOff,
+                child: module,
+              ),
+              Positioned(
+                left: modulePositions[2][0] * moduleSize + gliderOff,
+                top: modulePositions[2][1] * moduleSize + gliderOff,
+                child: module,
+              ),
+              Positioned(
+                left: modulePositions[3][0] * moduleSize + gliderOff,
+                top: modulePositions[3][1] * moduleSize + gliderOff,
+                child: module,
+              ),
+              Positioned(
+                left: modulePositions[4][0] * moduleSize + gliderOff,
+                top: modulePositions[4][1] * moduleSize + gliderOff,
+                child: module,
+              ),
+            ],
           ),
-          Positioned(
-            left: modulePositions[1][0] * moduleSize + gliderOff,
-            top: modulePositions[1][1] * moduleSize + gliderOff,
-            child: module,
+        ),
+        IconButton(
+          iconSize: 40,
+          icon: Icon(
+            playing ? Icons.pause_circle_outline : Icons.play_circle_outline,
+            color: widget.color,
           ),
-          Positioned(
-            left: modulePositions[2][0] * moduleSize + gliderOff,
-            top: modulePositions[2][1] * moduleSize + gliderOff,
-            child: module,
-          ),
-          Positioned(
-            left: modulePositions[3][0] * moduleSize + gliderOff,
-            top: modulePositions[3][1] * moduleSize + gliderOff,
-            child: module,
-          ),
-          Positioned(
-            left: modulePositions[4][0] * moduleSize + gliderOff,
-            top: modulePositions[4][1] * moduleSize + gliderOff,
-            child: module,
-          ),
-        ],
-      ),
+          onPressed: () {
+            if (playing) {
+              setState(() {
+                _controller.stop();
+                playing = false;
+              });
+            } else {
+              setState(() {
+                _controller.forward();
+                playing = true;
+              });
+            }
+          },
+        ),
+      ],
     );
   }
 }

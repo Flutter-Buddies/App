@@ -31,8 +31,8 @@ class GameOfLife extends ChangeNotifier {
   GameOfLife({
     sizeX = 40,
     sizeY = 40,
-    prob = 0.0,
-    periodicEdges = true,
+    prob = 0.15,
+    periodicEdges = false,
   }) {
     _numRow = sizeY;
     _numCol = sizeX;

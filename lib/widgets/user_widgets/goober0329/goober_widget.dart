@@ -11,12 +11,18 @@ class Goober extends WidgetInfo {
 
 Goober goober = Goober();
 
+final Color backgroundColor = Colors.white;
+
+final Color golColor = Color(0xFF00DE59);
+final double golCornerRadiusRatio = 0.25;
+
 class GooberWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
+    return Scaffold(
+      backgroundColor: backgroundColor,
+      body: SafeArea(
+        child: Column(
           children: [
             Row(
               children: [
@@ -33,26 +39,40 @@ class GooberWidget extends StatelessWidget {
               child: ListView(
                 physics: BouncingScrollPhysics(),
                 children: [
+                  // AVATAR DISPLAY
                   avatarDisplay(),
                   divider(),
+                  // ABOUT ME
                   aboutMe(),
                   divider(),
+                  // CONWAY'S GAME OF LIFE
+                  widgetDisplay(
+                    text: "John Conway's Game of Life",
+                    widget: GoLWidget(
+                      size: MediaQuery.of(context).size.width * 0.6,
+                    ),
+                  ),
+                  divider(),
+                  // GOL GLIDER
                   widgetDisplay(
                     text: "Game of Life Glider Animation",
                     widget: Center(
                       child: GoLGlider(
                         gliderSize: MediaQuery.of(context).size.width * 0.6,
-                        color: Color(0xFF00DE59),
-                        moduleCornerRadius: 0.4,
+                        color: golColor,
+                        cornerRadiusRatio: golCornerRadiusRatio,
                       ),
                     ),
                   ),
                   divider(),
-                  Center(child: Text("TODO")),
-                  divider(),
-                  Center(child: Text("TODO")),
-                  divider(),
-                  Center(child: Text("TODO")),
+                  widgetDisplay(
+                    text: "To be continued",
+                    widget: Icon(
+                      Icons.more_horiz,
+                      size: 30,
+                      color: Colors.black,
+                    ),
+                  ),
                 ],
               ),
             ),
