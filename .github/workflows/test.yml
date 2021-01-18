@@ -1,0 +1,16 @@
+name: tests
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: stable
+      - run: cp .env-example .env
+      - run: flutter pub get
+      - run: flutter test
