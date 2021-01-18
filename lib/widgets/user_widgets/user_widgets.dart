@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart'; // Added so we can link to socials or Discord
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flip_card/flip_card.dart';
 
 part 'widget_info.dart'; //defines the widget info abstract class
 
@@ -20,12 +21,14 @@ part 'widget_info.dart'; //defines the widget info abstract class
 
 part 'example/example.dart';
 part 'zambrella/zambrella_widget.dart';
+part 'rift/rift_widget.dart';
 
 // TODO: 5. Add your Widget Info class object from step 4a to the list
 List<WidgetInfo> widgetInfoList = [
   exampleInfo,
   zambrella, //user @Zambrella
   // Below 2 added just to make the list at least 4 long
+  rift, //user @Rift
   exampleInfo,
   exampleInfo,
   // <-- add your widgetinfo class here
