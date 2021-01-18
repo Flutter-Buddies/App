@@ -203,10 +203,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: widgetInfoList
-                        .map((widgetInfo) => MemberCircle(
-                              memberName: widgetInfo.developer,
-                              memberImage: AssetImage(widgetInfo.logoPath),
-                            ))
+                        .map((widgetInfo) =>
+                            MemberCircle(widgetInfo: widgetInfo))
                         .toList(),
                   ),
                   SizedBox(
@@ -260,37 +258,46 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class MemberCircle extends StatelessWidget {
-  final String memberName;
-  final ImageProvider memberImage;
-  MemberCircle({this.memberName, this.memberImage});
+  MemberCircle({this.widgetInfo});
+
+  final uw.WidgetInfo widgetInfo;
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              height: 75,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: memberImage,
-                  ),
-                  shape: BoxShape.circle),
-            ),
-            SizedBox(
-              height: 4,
-            ),
-            Text(
-              memberName,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
+      child: GestureDetector(
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => widgetInfo.widget,
+          ),
+        ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                height: 75,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage(widgetInfo.logoPath),
+                    ),
+                    shape: BoxShape.circle),
               ),
-            )
-          ],
+              SizedBox(
+                height: 4,
+              ),
+              Text(
+                widgetInfo.developer,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
