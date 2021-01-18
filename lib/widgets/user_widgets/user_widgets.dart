@@ -10,11 +10,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 /// imports for Goober's developer widget
 import 'goober0329/qr_game_of_life/gol_glider.dart';
-import 'goober0329/qr_game_of_life/game_of_life_model.dart';
-import 'goober0329/qr_game_of_life/game_of_life_controller.dart';
-import 'goober0329/qr_game_of_life/gol_display.dart';
 import 'goober0329/qr_game_of_life/game_of_life_widget.dart';
-
 /// end of Goober's imports
 
 //defines the widget info abstract class
