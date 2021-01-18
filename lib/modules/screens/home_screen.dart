@@ -202,28 +202,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      MemberCircle(
-                        memberName: '${widgetInfoList[0].developer}',
-                        memberImage:
-                            AssetImage('${widgetInfoList[0].logoPath}'),
-                      ),
-                      MemberCircle(
-                        memberName: '${widgetInfoList[1].developer}',
-                        memberImage:
-                            AssetImage('${widgetInfoList[1].logoPath}'),
-                      ),
-                      MemberCircle(
-                        memberName: '${widgetInfoList[2].developer}',
-                        memberImage:
-                            AssetImage('${widgetInfoList[2].logoPath}'),
-                      ),
-                      MemberCircle(
-                        memberName: '${widgetInfoList[3].developer}',
-                        memberImage:
-                            AssetImage('${widgetInfoList[3].logoPath}'),
-                      ),
-                    ],
+                    children: widgetInfoList
+                        .map((widgetInfo) => MemberCircle(
+                              memberName: widgetInfo.developer,
+                              memberImage: AssetImage(widgetInfo.logoPath),
+                            ))
+                        .toList(),
                   ),
                   SizedBox(
                     height: 8,
