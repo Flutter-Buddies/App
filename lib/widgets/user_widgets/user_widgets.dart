@@ -2,16 +2,16 @@ library user_widgets;
 
 // all included parts (widgets) have the packages listed here available to them
 // add your required dependencies here
+/// communal imports
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart'; // Added so we can link to socials or Discord
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-/// imports for Goober's developer widget
+/// imports for Grayson's developer widget
 import 'goober0329/qr_game_of_life/gol_glider.dart';
 import 'goober0329/qr_game_of_life/game_of_life_widget.dart';
-/// end of Goober's imports
 
 //defines the widget info abstract class
 part 'widget_info.dart';
