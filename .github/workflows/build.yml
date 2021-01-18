@@ -20,3 +20,4 @@ jobs:
         with:
           name: builds
           path: build/app/outputs/apk/release/app-release.apk
+      - run: flutter build ios --release --no-codesign
