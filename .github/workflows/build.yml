@@ -4,7 +4,7 @@ on:
     branches: [release]
   workflow_dispatch:
 jobs:
-  build-apk-ipa-web:
+  build-apk-ipa:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
@@ -14,6 +14,7 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: stable
+      - run: cp .env.example .env
       - run: flutter pub get
       - run: flutter build apk
       - uses: actions/upload-artifact@v2
