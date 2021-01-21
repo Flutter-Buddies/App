@@ -1,7 +1,9 @@
 # Community App
-A flutter app with for mobile download and mobile web with community features like a time zone translated calendar and a showcase of member created widgets that can be placed easily.
 
-This app will (hopefully) get published to the app stores and shared among our brand, so get your name in the list.
+![tests](https://github.com/Flutter-Buddies/App/workflows/tests/badge.svg)
+![build](https://github.com/Flutter-Buddies/App/workflows/build/badge.svg)
+
+A Flutter app with community features like a time zone translated calendar of events, list of group projects and a showcase of member created widgets. This app will get published to the app stores and shared among our brand, so get your name in the list!
 
 ## Contribution notice
 

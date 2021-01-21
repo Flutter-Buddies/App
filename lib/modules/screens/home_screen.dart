@@ -202,28 +202,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      MemberCircle(
-                        memberName: '${widgetInfoList[0].developer}',
-                        memberImage:
-                            AssetImage('${widgetInfoList[0].logoPath}'),
-                      ),
-                      MemberCircle(
-                        memberName: '${widgetInfoList[1].developer}',
-                        memberImage:
-                            AssetImage('${widgetInfoList[1].logoPath}'),
-                      ),
-                      MemberCircle(
-                        memberName: '${widgetInfoList[2].developer}',
-                        memberImage:
-                            AssetImage('${widgetInfoList[2].logoPath}'),
-                      ),
-                      MemberCircle(
-                        memberName: '${widgetInfoList[3].developer}',
-                        memberImage:
-                            AssetImage('${widgetInfoList[3].logoPath}'),
-                      ),
-                    ],
+                    children: widgetInfoList
+                        .map((widgetInfo) =>
+                            MemberCircle(widgetInfo: widgetInfo))
+                        .toList(),
                   ),
                   SizedBox(
                     height: 8,
@@ -276,37 +258,46 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class MemberCircle extends StatelessWidget {
-  final String memberName;
-  final ImageProvider memberImage;
-  MemberCircle({this.memberName, this.memberImage});
+  MemberCircle({this.widgetInfo});
+
+  final uw.WidgetInfo widgetInfo;
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              height: 75,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: memberImage,
-                  ),
-                  shape: BoxShape.circle),
-            ),
-            SizedBox(
-              height: 4,
-            ),
-            Text(
-              memberName,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
+      child: GestureDetector(
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => widgetInfo.widget,
+          ),
+        ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                height: 75,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage(widgetInfo.logoPath),
+                    ),
+                    shape: BoxShape.circle),
               ),
-            )
-          ],
+              SizedBox(
+                height: 4,
+              ),
+              Text(
+                widgetInfo.developer,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

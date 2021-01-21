@@ -6,8 +6,12 @@ library user_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/gestures.dart';
 import 'package:url_launcher/url_launcher.dart'; // Added so we can link to socials or Discord
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+//imports for Rift
+import 'package:flip_card/flip_card.dart';
 
 /// imports for Grayson's developer widget
 import 'goober0329/qr_game_of_life/gol_glider.dart';
@@ -27,14 +31,15 @@ part 'widget_info.dart';
 part 'example/example.dart';
 part 'zambrella/zambrella_widget.dart';
 part 'goober0329/goober_widget.dart';
+part 'rift/rift_widget.dart';
+part 'slovnicki/slovnicki_widget.dart';
 
 // TODO: 5. Add your Widget Info class object from step 4a to the list
 List<WidgetInfo> widgetInfoList = [
-  exampleInfo,
   zambrella, //user @Zambrella
   goober,
-  // Below 2 added just to make the list at least 4 long
-  exampleInfo,
+  rift,
+  slovnicki,
   exampleInfo,
   // <-- add your widgetinfo class here
 ];
