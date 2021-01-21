@@ -15,7 +15,7 @@ class SlovnickiWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red[900].withOpacity(0.5),
+      backgroundColor: const Color(0xFF600000),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
