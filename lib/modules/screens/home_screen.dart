@@ -240,6 +240,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       projectDescription: project.description,
                                       projectImage: project.image,
                                       projectTag: project.tag,
+                                      url: project.url,
                                     ),
                                   ))
                               .toList(),

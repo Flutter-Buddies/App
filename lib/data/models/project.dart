@@ -21,6 +21,7 @@ class Project {
   final String description;
   final ImageProvider image;
   final String tag;
+  final String url;
 
   Project.fromJson(Map<String, dynamic> json)
       : title = json['name'],
@@ -28,7 +29,8 @@ class Project {
         image = NetworkImage('https://picsum.photos/seed/' +
             faker.lorem.word() +
             '/600'), // TODO
-        tag = _makeTag(json['archived'], json['disabled']);
+        tag = _makeTag(json['archived'], json['disabled']),
+        url = json['html_url'];
 
   static Project get fake {
     final Faker faker = Faker();
