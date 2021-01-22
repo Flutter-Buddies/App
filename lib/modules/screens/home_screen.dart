@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   // Get the list of users and shuffle it so different users are shown on the front page each time
-  var widgetInfoList = uw.widgetInfoList..shuffle();
+  var widgetInfoList = (uw.widgetInfoList..shuffle()).take(4);
 
   final EventRepository _eventRepository = EventRepository.get();
   final ProjectRepository _projectRepository = ProjectRepository.get();
