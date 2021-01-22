@@ -61,7 +61,7 @@ class GooberWidget extends StatelessWidget {
                       child: GoLGlider(
                         gliderSize: MediaQuery.of(context).size.width * 0.6,
                         color: golColor,
-                        cornerRadiusRatio: golCornerRadiusRatio,
+                        borderRadiusRatio: golCornerRadiusRatio,
                       ),
                     ),
                   ),

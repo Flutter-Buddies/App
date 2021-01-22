@@ -6,7 +6,7 @@ import 'package:flutter_buddies/widgets/user_widgets/goober0329/qr_game_of_life/
 import 'package:flutter_buddies/widgets/user_widgets/user_widgets.dart';
 
 class GoLWidget extends StatefulWidget {
-  double size;
+  final double size;
   GoLWidget({@required this.size});
 
   @override
