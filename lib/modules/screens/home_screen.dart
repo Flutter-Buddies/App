@@ -232,11 +232,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       if (snapshot.hasData) {
                         return Column(
                           children: snapshot.data
-                              .map((project) => ProjectCard(
-                                    projectTitle: project.title,
-                                    projectDescription: project.description,
-                                    projectImage: project.image,
-                                    projectTag: project.tag,
+                              .map((project) => Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 16, right: 16, bottom: 16),
+                                    child: ProjectCard(
+                                      projectTitle: project.title,
+                                      projectDescription: project.description,
+                                      projectImage: project.image,
+                                      projectTag: project.tag,
+                                    ),
                                   ))
                               .toList(),
                         );
