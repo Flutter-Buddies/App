@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   // Get the list of users and shuffle it so different users are shown on the front page each time
-  var widgetInfoList = (uw.widgetInfoList..shuffle()).take(4);
+  var widgetInfoList = uw.widgetInfoList..shuffle();
 
   final EventRepository _eventRepository = EventRepository.get();
   final ProjectRepository _projectRepository = ProjectRepository.get();
@@ -199,13 +199,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: widgetInfoList
-                        .map((widgetInfo) =>
-                            MemberCircle(widgetInfo: widgetInfo))
-                        .toList(),
+                  SizedBox(
+                    height: 120,
+                    child: ListView(
+                      physics: BouncingScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      children: widgetInfoList
+                          .map((widgetInfo) =>
+                              MemberCircle(widgetInfo: widgetInfo))
+                          .toList(),
+                    ),
                   ),
                   SizedBox(
                     height: 8,
@@ -264,7 +267,9 @@ class MemberCircle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return SizedBox(
+      height: 100,
+      width: 100,
       child: GestureDetector(
         onTap: () => Navigator.push(
           context,
@@ -292,6 +297,7 @@ class MemberCircle extends StatelessWidget {
               Text(
                 widgetInfo.developer,
                 textAlign: TextAlign.center,
+                maxLines: 2,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
