@@ -118,19 +118,6 @@ class ScheduleScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Row(
-                            children: [
-                              Text('Timezone: '),
-                              //Todo: better clickable style?
-                              //Todo: selectable timezone stored locally
-                              Text(
-                                'UTC',
-                                style: TextStyle(
-                                    color: Colors.blue,
-                                    decoration: TextDecoration.underline),
-                              )
-                            ],
-                          ),
                         ],
                       ),
                     ),

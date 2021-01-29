@@ -54,10 +54,10 @@ class EventCard extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   fit: BoxFit.scaleDown,
                   child: Text(
-                    DateFormat('MMMEd').format(eventDateTime) +
+                    DateFormat('MMMEd').format(eventDateTime.toLocal()) +
                         ' ' +
-                        DateFormat.Hm().format(eventDateTime) +
-                        ' UTC',
+                        DateFormat.Hm().format(eventDateTime.toLocal()) +
+                        ' ${DateTime.now().timeZoneName}',
                     maxLines: 1,
                     style: TextStyle(
                         color: Colors.white,
