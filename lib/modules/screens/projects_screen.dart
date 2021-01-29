@@ -8,6 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class ProjectsScreen extends StatelessWidget {
   final ProjectRepository _projectRepository = ProjectRepository.get();
+  final String pageName = 'Group Projects';
 
   @override
   Widget build(BuildContext context) {
@@ -18,25 +19,14 @@ class ProjectsScreen extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
-              backgroundColor: Colors.white,
+              backgroundColor: Colors.white10,
               leading: Image(
                 image: AssetImage('assets/global_images/flutterbuddies.png'),
               ),
               centerTitle: true,
-              title: Column(
-                children: [
-                  Text(
-                    'Flutter Buddies',
-                    style: TextStyle(color: Colors.black, fontSize: 24),
-                  ),
-                  Text(
-                    'A Flutter Developer Community',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w300,
-                        fontSize: 14),
-                  ),
-                ],
+              title: Text(
+                pageName,
+                style: TextStyle(color: Colors.black, fontSize: 24),
               ),
               bottom: PreferredSize(
                 preferredSize: Size(double.infinity, 80),
@@ -168,6 +158,9 @@ class ProjectsScreen extends StatelessWidget {
                         );
                       }
                     },
+                  ),
+                  SizedBox(
+                    height: 8,
                   ),
                 ],
               ),

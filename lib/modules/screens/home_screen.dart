@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
-              backgroundColor: Colors.white,
+              backgroundColor: Colors.white10,
               leading: Image(
                 image: AssetImage('assets/global_images/flutterbuddies.png'),
               ),
@@ -145,13 +145,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisSpacing: 16,
                           // Setting to none so that the shadow isn't clipped
                           clipBehavior: Clip.none,
-                          childAspectRatio: 0.85,
+                          childAspectRatio: 1.5,
                           crossAxisCount: 2,
                           physics: NeverScrollableScrollPhysics(),
                           children: snapshot.data
                               .map((event) => EventCard(
                                     eventName: event.name,
-                                    eventImage: event.image,
+                                    eventImage: AssetImage(
+                                        'assets/global_images/Event_Image.png'), // Use generic flutter + calendar image
                                     eventDateTime: event.dateTime,
                                   ))
                               .toList(),
