@@ -8,6 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class ScheduleScreen extends StatelessWidget {
   final EventRepository _eventRepository = EventRepository.get();
+  final String pageName = 'Upcoming Events';
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class ScheduleScreen extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
-              backgroundColor: Colors.white,
+              backgroundColor: Colors.white10,
               leading: GestureDetector(
                 onTap: () {
                   Navigator.pop(context);
@@ -27,20 +28,9 @@ class ScheduleScreen extends StatelessWidget {
                 ),
               ),
               centerTitle: true,
-              title: Column(
-                children: [
-                  Text(
-                    'Flutter Buddies',
-                    style: TextStyle(color: Colors.black, fontSize: 24),
-                  ),
-                  Text(
-                    'A Flutter Developer Community',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w300,
-                        fontSize: 14),
-                  ),
-                ],
+              title: Text(
+                pageName,
+                style: TextStyle(color: Colors.black, fontSize: 24),
               ),
               bottom: PreferredSize(
                 preferredSize: Size(double.infinity, 80),
@@ -128,19 +118,6 @@ class ScheduleScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Row(
-                            children: [
-                              Text('Timezone: '),
-                              //Todo: better clickable style?
-                              //Todo: selectable timezone stored locally
-                              Text(
-                                'UTC',
-                                style: TextStyle(
-                                    color: Colors.blue,
-                                    decoration: TextDecoration.underline),
-                              )
-                            ],
-                          ),
                         ],
                       ),
                     ),
@@ -157,13 +134,14 @@ class ScheduleScreen extends StatelessWidget {
                           crossAxisSpacing: 16,
                           // Setting to none so that the shadow isn't clipped
                           clipBehavior: Clip.none,
-                          childAspectRatio: 0.85,
+                          childAspectRatio: 1.50,
                           crossAxisCount: 2,
                           physics: NeverScrollableScrollPhysics(),
                           children: snapshot.data
                               .map((event) => EventCard(
                                     eventName: event.name,
-                                    eventImage: event.image,
+                                    eventImage: AssetImage(
+                                        'assets/global_images/Event_Image.png'), // Use generic image
                                     eventDateTime: event.dateTime,
                                   ))
                               .toList(),
@@ -177,6 +155,9 @@ class ScheduleScreen extends StatelessWidget {
                         );
                       }
                     },
+                  ),
+                  SizedBox(
+                    height: 8.0,
                   ),
                 ],
               ),

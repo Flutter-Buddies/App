@@ -28,11 +28,12 @@ part 'widget_info.dart';
 // TODO: 4a. Instantiate your WidgetInfo Object in your widget's dart file
 // TODO: 4b. See example/example.dart for an example of step 4
 
-part 'example/example.dart';
+part 'example/example.dart'; // <-- from TODO step 2
 part 'zambrella/zambrella_widget.dart';
 part 'goober0329/goober_widget.dart';
 part 'rift/rift_widget.dart';
 part 'slovnicki/slovnicki_widget.dart';
+part 'hsinats/hsinats_widget.dart';
 
 // TODO: 5. Add your Widget Info class object from step 4a to the list
 List<WidgetInfo> widgetInfoList = [
@@ -40,8 +41,8 @@ List<WidgetInfo> widgetInfoList = [
   goober,
   rift,
   slovnicki,
-  exampleInfo,
-  // <-- add your widgetinfo class here
+  hsinats,
+  //exampleInfo, // <-- from TODO step 5: add your widgetinfo class here
 ];
 // can this be done without instantiating or adding the widgetinfo to the list? (see user_widgets.dart)
 
