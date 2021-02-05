@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_buddies/constants/app_constants.dart';
+import 'package:flutter_buddies/modules/screens/about_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'modules/screens/user_widgets_screen.dart';
 import 'modules/screens/home_screen.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
           'user_widgets_screen': (context) => UserWidgetsScreen(),
           'schedule': (context) => ScheduleScreen(),
           'projects': (context) => ProjectsScreen(),
+          'about': (context) => AboutScreen(),
         });
   }
 }

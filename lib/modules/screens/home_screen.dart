@@ -66,6 +66,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
+              actions: [
+                IconButton(
+                  icon: Icon(Icons.info),
+                  onPressed: () {
+                    Navigator.pushNamed(context, 'about');
+                  },
+                  color: Color(0xff45D1FD),
+                ),
+              ],
               bottom: PreferredSize(
                 preferredSize: Size(double.infinity, 80),
                 child: Padding(
@@ -104,8 +113,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       AppBarIcon(
                         iconImage: AssetImage(
-                            'assets/global_images/Website-Logo-Shadowed.png'),
-                        iconText: 'Website',
+                            'assets/global_images/GitHub-Logo-Shadowed.png'),
+                        iconText: 'GitHub',
                         iconColor: Color(0xff2771BB),
                         iconFunction: () async {
                           await launch(
