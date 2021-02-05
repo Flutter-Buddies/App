@@ -66,6 +66,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
+              actions: [
+                IconButton(
+                  icon: Icon(Icons.info),
+                  onPressed: () {
+                    Navigator.pushNamed(context, 'about');
+                  },
+                  color: Color(0xff45D1FD),
+                ),
+              ],
               bottom: PreferredSize(
                 preferredSize: Size(double.infinity, 80),
                 child: Padding(
@@ -104,8 +113,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       AppBarIcon(
                         iconImage: AssetImage(
-                            'assets/global_images/Website-Logo-Shadowed.png'),
-                        iconText: 'Website',
+                            'assets/global_images/GitHub-Logo-Shadowed.png'),
+                        iconText: 'GitHub',
                         iconColor: Color(0xff2771BB),
                         iconFunction: () async {
                           await launch(
@@ -206,9 +215,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       physics: BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       children: widgetInfoList
-                          .map((widgetInfo) =>
-                              MemberCircle(widgetInfo: widgetInfo))
-                          .toList(),
+                              .map((widgetInfo) =>
+                                  MemberCircle(widgetInfo: widgetInfo))
+                              .toList() +
+                          [SeeMoreCircle()],
                     ),
                   ),
                   SizedBox(
@@ -302,6 +312,51 @@ class MemberCircle extends StatelessWidget {
               ),
               Text(
                 widgetInfo.developer,
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class SeeMoreCircle extends MemberCircle {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 100,
+      width: 100,
+      child: GestureDetector(
+        onTap: () => Navigator.pushNamed(context, 'user_widgets_screen'),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                height: 75,
+                decoration: BoxDecoration(
+                  color: Colors.grey[350],
+                  shape: BoxShape.circle,
+                ),
+                child: Center(
+                  child: Icon(
+                    Icons.launch,
+                    size: 28,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 4,
+              ),
+              Text(
+                'See more...',
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 style: TextStyle(
