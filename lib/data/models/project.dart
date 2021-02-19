@@ -12,7 +12,6 @@ String _makeTag(bool archived, bool disabled) {
 }
 
 //Todo: clean name
-//Todo: allow null description
 //Todo: Bring in more details for full list
 //Todo: figure out images from repo
 
@@ -25,7 +24,7 @@ class Project {
 
   Project.fromJson(Map<String, dynamic> json)
       : title = json['name'],
-        description = json['description'],
+        description = json['description'] ?? 'No description available',
         image = NetworkImage('https://picsum.photos/seed/' +
             faker.lorem.word() +
             '/600'), // TODO
