@@ -4,7 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 class ProjectCard extends StatelessWidget {
   final String projectTitle;
   final String projectDescription;
-  final ImageProvider projectImage;
+  final Future<ImageProvider> projectImage;
   final String projectTag;
   final String url;
 
@@ -37,16 +37,28 @@ class ProjectCard extends StatelessWidget {
           children: [
             Stack(
               children: [
-                Container(
-                  width: double.infinity,
-                  height: 120,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: projectImage,
-                    ),
-                  ),
-                ),
+                FutureBuilder<NetworkImage>(
+                    future: projectImage,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return Container(
+                          width: double.infinity,
+                          height: 120,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: snapshot.data,
+                            ),
+                          ),
+                        );
+                      } else {
+                        return Container(
+                            padding: EdgeInsets.all(16.0),
+                            height: 120,
+                            width: 120,
+                            child: CircularProgressIndicator());
+                      }
+                    }),
                 Positioned(
                   top: 10,
                   right: 10,
