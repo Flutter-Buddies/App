@@ -4,20 +4,24 @@ import 'package:url_launcher/url_launcher.dart';
 class ProjectCard extends StatelessWidget {
   final String projectTitle;
   final String projectDescription;
-  final Future<ImageProvider> projectImage;
+  final Uri projectImageUri;
   final String projectTag;
   final String url;
 
   ProjectCard({
     this.projectTitle,
     this.projectDescription,
-    this.projectImage,
+    this.projectImageUri,
     this.projectTag,
     this.url,
   });
 
   @override
   Widget build(BuildContext context) {
+    final double imageSize =
+        MediaQuery.of(context).orientation == Orientation.landscape
+            ? MediaQuery.of(context).size.height * 0.8
+            : MediaQuery.of(context).size.width * 0.8;
     return GestureDetector(
       onTap: () => launch(url),
       child: Container(
@@ -37,28 +41,12 @@ class ProjectCard extends StatelessWidget {
           children: [
             Stack(
               children: [
-                FutureBuilder<NetworkImage>(
-                    future: projectImage,
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return Container(
-                          width: double.infinity,
-                          height: 120,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: snapshot.data,
-                            ),
-                          ),
-                        );
-                      } else {
-                        return Container(
-                            padding: EdgeInsets.all(16.0),
-                            height: 120,
-                            width: 120,
-                            child: CircularProgressIndicator());
-                      }
-                    }),
+                // TODO:  Add spinner while loading
+                // TODO:  Implement a less naive image size control
+                Image.network(
+                  projectImageUri.toString(),
+                  height: imageSize,
+                ),
                 Positioned(
                   top: 10,
                   right: 10,
