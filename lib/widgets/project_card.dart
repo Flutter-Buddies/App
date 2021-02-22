@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -16,12 +17,25 @@ class ProjectCard extends StatelessWidget {
     this.url,
   });
 
+  Widget _errorWidget(BuildContext context, String url, dynamic error) {
+    return Column(
+      children: [
+        Icon(Icons.error),
+        Text(
+          url,
+          overflow: TextOverflow.clip,
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final double imageSize =
-        MediaQuery.of(context).orientation == Orientation.landscape
-            ? MediaQuery.of(context).size.height * 0.8
-            : MediaQuery.of(context).size.width * 0.8;
+        (MediaQuery.of(context).orientation == Orientation.landscape
+                ? MediaQuery.of(context).size.height
+                : MediaQuery.of(context).size.width) *
+            0.5;
     return GestureDetector(
       onTap: () => launch(url),
       child: Container(
@@ -41,11 +55,24 @@ class ProjectCard extends StatelessWidget {
           children: [
             Stack(
               children: [
-                // TODO:  Add spinner while loading
+                // TODONE:  Add spinner while loading
                 // TODO:  Implement a less naive image size control
-                Image.network(
-                  projectImageUri.toString(),
+                // Image.network(
+                //   projectImageUri.toString(),
+                //   height: imageSize,
+                // ),
+
+                Container(
                   height: imageSize,
+                  width: imageSize,
+                  child: CachedNetworkImage(
+                    imageUrl: projectImageUri.toString(),
+                    placeholder: (context, _) =>  Container(
+                      height: imageSize * 0.3,
+                      width: imageSize * 0.3,
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
                 ),
                 Positioned(
                   top: 10,
