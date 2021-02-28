@@ -209,6 +209,7 @@ I started my Flutter journey almost 2 years ago after I expressed an interest in
                             title: 'Interests',
                             body: """
 - Gaming
+- Game Development
 - Esports (mainly DOTA 2)
 - Metal music & production
                   """,
