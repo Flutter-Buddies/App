@@ -1,23 +1,41 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProjectCard extends StatelessWidget {
   final String projectTitle;
   final String projectDescription;
-  final Future<ImageProvider> projectImage;
+  final Uri projectImageUri;
   final String projectTag;
   final String url;
 
   ProjectCard({
     this.projectTitle,
     this.projectDescription,
-    this.projectImage,
+    this.projectImageUri,
     this.projectTag,
     this.url,
   });
 
+  Widget _errorWidget(BuildContext context, String url, dynamic error) {
+    return Column(
+      children: [
+        Icon(Icons.error),
+        Text(
+          url,
+          overflow: TextOverflow.clip,
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final double imageSize =
+        (MediaQuery.of(context).orientation == Orientation.landscape
+                ? MediaQuery.of(context).size.height
+                : MediaQuery.of(context).size.width) *
+            0.5;
     return GestureDetector(
       onTap: () => launch(url),
       child: Container(
@@ -37,28 +55,25 @@ class ProjectCard extends StatelessWidget {
           children: [
             Stack(
               children: [
-                FutureBuilder<NetworkImage>(
-                    future: projectImage,
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return Container(
-                          width: double.infinity,
-                          height: 120,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: snapshot.data,
-                            ),
-                          ),
-                        );
-                      } else {
-                        return Container(
-                            padding: EdgeInsets.all(16.0),
-                            height: 120,
-                            width: 120,
-                            child: CircularProgressIndicator());
-                      }
-                    }),
+                // TODONE:  Add spinner while loading
+                // TODO:  Implement a less naive image size control
+                // Image.network(
+                //   projectImageUri.toString(),
+                //   height: imageSize,
+                // ),
+
+                Container(
+                  height: imageSize,
+                  width: imageSize,
+                  child: CachedNetworkImage(
+                    imageUrl: projectImageUri.toString(),
+                    placeholder: (context, _) =>  Container(
+                      height: imageSize * 0.3,
+                      width: imageSize * 0.3,
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
+                ),
                 Positioned(
                   top: 10,
                   right: 10,
