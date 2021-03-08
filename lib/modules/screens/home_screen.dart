@@ -249,7 +249,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: ProjectCard(
                                       projectTitle: project.title,
                                       projectDescription: project.description,
-                                      projectImage: project.image,
+                                      projectImageUri: project.imageUri,
                                       projectTag: project.tag,
                                       url: project.url,
                                     ),
