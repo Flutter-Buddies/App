@@ -13,6 +13,7 @@ String _makeTag(bool archived, bool disabled) {
 }
 
 // Todo: Move this _getImage function to the FutureBuilder in the project_card file
+// Todo: Remove this - it is no longer needed.
 Future<NetworkImage> _getImage(
     String url, String defaultBranch, String repoName) async {
   String imageUrl = 'https://raw.githubusercontent.com' +
@@ -33,13 +34,34 @@ Future<NetworkImage> _getImage(
   }
 }
 
+const String SCHEME = 'https';
+const String HOST = 'raw.githubusercontent.com';
+const String PATH_COMPONENT_BASE = 'Flutter-Buddies';
+const String PATH_COMPONENT_FILENAME = 'cover_image.png';
+
+// Let flutter do the hard work of making sure that the URL structure is valid.
+Uri _makeImageUri(String url, String defaultBranch, String repoName) {
+  return Uri(
+    scheme: SCHEME,
+    host: HOST,
+    pathSegments: [
+      PATH_COMPONENT_BASE,
+      repoName,
+      defaultBranch,
+      PATH_COMPONENT_FILENAME
+    ],
+  );
+}
+
+
 //Todo: Bring in more details for full list
 //Todo: figure out images from repo
 
 class Project {
   final String title;
   final String description;
-  final Future<ImageProvider> image;
+  final Uri imageUri;
+  // final Future<ImageProvider> image; // COMMENTED OUT - Only download the image if we actually ever display it.
   final String tag;
   final String url;
   final String defaultBranch;
@@ -47,8 +69,10 @@ class Project {
   Project.fromJson(Map<String, dynamic> json)
       : title = (json['name']).toString().replaceAll('-', ' '),
         description = json['description'] ?? 'No description available',
-        image =
-            _getImage(json['html_url'], json['default_branch'], json['name']),
+        imageUri = _makeImageUri(
+            json['html_url'], json['default_branch'], json['name']),
+        // image =
+        //     _getImage(json['html_url'], json['default_branch'], json['name']),
         tag = _makeTag(json['archived'], json['disabled']),
         url = json['html_url'],
         defaultBranch = json['default_branch'];
