@@ -10,7 +10,6 @@ class DaseedInfo extends WidgetInfo {
 
 DaseedInfo daseed = DaseedInfo();
 
-// User's widget lives here
 class DaseedWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -30,11 +29,14 @@ class DaseedWidget extends StatelessWidget {
             style: TextStyle(color: Colors.black),
           ),
         ),
+        // The stack is here only for a matter of design
         body: Stack(
           children: [
+            // It offers me the possibility to draw a shape in the background
             CustomPaint(
                 painter: DecorationPainter(size.height, size.width, color),
                 size: size),
+            // Then draws the useful widgets in front of it.
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
