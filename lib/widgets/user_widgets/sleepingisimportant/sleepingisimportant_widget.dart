@@ -154,102 +154,100 @@ class _SleepingisimportantWidgetState extends State<SleepingisimportantWidget>
                 ),
               ),
             ),
-            Column(
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.only(
-                    top: 0.1 * MediaQuery.of(context).size.height,
-                    left: 0.1 * MediaQuery.of(context).size.width,
-                    right: 0.1 * MediaQuery.of(context).size.width,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            AnimatedSize(
-                              duration: Duration(milliseconds: 1500),
-                              curve: Curves.fastOutSlowIn,
-                              vsync: this,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              // height: 0.6 * MediaQuery.of(context).size.height,
+              padding: EdgeInsets.only(
+                // top: 0.1 * MediaQuery.of(context).size.height,
+                // bottom: 0.1 * MediaQuery.of(context).size.height,
+                left: 0.1 * MediaQuery.of(context).size.width,
+                right: 0.1 * MediaQuery.of(context).size.width,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        AnimatedSize(
+                          duration: Duration(milliseconds: 1500),
+                          curve: Curves.fastOutSlowIn,
+                          vsync: this,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image(
+                              image: AssetImage(sleepingisimportant.logoPath),
+                              width: waveHeightIndexInt == -1
+                                  ? 0.3 * MediaQuery.of(context).size.width
+                                  : 0,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                            width: 0.04 * MediaQuery.of(context).size.width),
+                        AnimatedOpacity(
+                          opacity: waveHeightIndexInt == -1 ? 1.0 : 0.0,
+                          duration: Duration(milliseconds: 1000),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              InkWell(
+                                onTap: () => launch(
+                                    'https://github.com/Sleepingisimportant'),
                                 child: Image(
-                                  image:
-                                      AssetImage(sleepingisimportant.logoPath),
-                                  width: waveHeightIndexInt == -1
-                                      ? 0.3 * MediaQuery.of(context).size.width
-                                      : 0,
+                                  image: AssetImage(
+                                      "assets/global_images/GitHub-Logo-Shadowed.png"),
+                                  width:
+                                      0.05 * MediaQuery.of(context).size.width,
                                 ),
                               ),
-                            ),
-                            SizedBox(
-                                width:
-                                    0.04 * MediaQuery.of(context).size.width),
-                            AnimatedOpacity(
-                              opacity: waveHeightIndexInt == -1 ? 1.0 : 0.0,
-                              duration: Duration(milliseconds: 1000),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  InkWell(
-                                    onTap: () => launch(
-                                        'https://github.com/Sleepingisimportant'),
-                                    child: Image(
-                                      image: AssetImage(
-                                          "assets/global_images/GitHub-Logo-Shadowed.png"),
-                                      width: 0.05 *
-                                          MediaQuery.of(context).size.width,
-                                    ),
-                                  ),
-                                  Text(
-                                    sleepingisimportant.developer,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w100,
-                                      fontSize: 0.1 *
-                                          MediaQuery.of(context).size.width,
-                                      color: Colors.black54,
-                                    ),
-                                  ),
-                                ],
+                              Text(
+                                sleepingisimportant.developer,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w100,
+                                  fontSize:
+                                      0.1 * MediaQuery.of(context).size.width,
+                                  color: Colors.black54,
+                                ),
                               ),
-                            ),
-                          ]),
+                            ],
+                          ),
+                        ),
+                      ]),
 
-                      // if (waveHeightIndexInt == -1)
-                      AnimatedOpacity(
-                        opacity: waveHeightIndexInt == -1 ? 1.0 : 0.0,
-                        duration: Duration(milliseconds: 1000),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                                height:
-                                    0.025 * MediaQuery.of(context).size.height),
-                            Text(
-                              sleepingisimportant.description,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w200,
-                                fontSize:
-                                    0.05 * MediaQuery.of(context).size.width,
-                                color: Colors.black38,
-                              ),
-                              textAlign: TextAlign.justify,
-                            ),
-                            SizedBox(
-                                height:
-                                    0.015 * MediaQuery.of(context).size.height),
-                            Divider(
-                                color: Colors.black54,
-                                height:
-                                    0.015 * MediaQuery.of(context).size.height),
-                            Container(
-                              height: 0.5 * MediaQuery.of(context).size.height,
+                  // if (waveHeightIndexInt == -1)
+                  AnimatedOpacity(
+                    opacity: waveHeightIndexInt == -1 ? 1.0 : 0.0,
+                    duration: Duration(milliseconds: 1000),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                            height: 0.025 * MediaQuery.of(context).size.height),
+                        Text(
+                          sleepingisimportant.description,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w200,
+                            fontSize: 0.05 * MediaQuery.of(context).size.width,
+                            color: Colors.black38,
+                          ),
+                          textAlign: TextAlign.justify,
+                        ),
+                        // SizedBox(
+                        //     height: 0.015 * MediaQuery.of(context).size.height),
+                        Divider(
+                          color: Colors.black54,
+                          height: 0.03 * MediaQuery.of(context).size.height,
+                          thickness: 0.25,
+                          indent: 10,
+                        ),
+                        Container(
+                          child: Container(
+                            height: 0.5 * MediaQuery.of(context).size.height,
+                            child: RawScrollbar(
+                              thumbColor: Colors.white.withOpacity(0.2),
                               child: SingleChildScrollView(
-                                // scrollDirection: Axis.vertical,
-
                                 child: Column(
                                   children: [
                                     SizedBox(
@@ -263,12 +261,23 @@ Started my programming journey on my own since last year October, and fell in lo
 
 Learning new stuff alone is never fun, thus, I hope that I can get to meet some learning buddies in Flutter Buddies Group.
 
-To be continued....""",
+
+To be continued....
+
+
+
+
+
+
+
+
+
+""",
                                       style: TextStyle(
-                                        fontWeight: FontWeight.w300,
+                                        fontWeight: FontWeight.w200,
                                         fontSize: 0.04 *
                                             MediaQuery.of(context).size.width,
-                                        color: Colors.black54,
+                                        color: Colors.black,
                                       ),
                                       textAlign: TextAlign.justify,
                                     ),
@@ -276,13 +285,13 @@ To be continued....""",
                                 ),
                               ),
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             Container(
               width: MediaQuery.of(context).size.width,
