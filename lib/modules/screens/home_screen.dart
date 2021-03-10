@@ -185,28 +185,35 @@ class _HomeScreenState extends State<HomeScreen> {
                     headerFunction: () {
                       Navigator.pushNamed(context, 'user_widgets_screen');
                     },
-                    trailingWidget: Row(
-                      children: [
-                        Container(
-                          height: 10,
-                          width: 10,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: Colors.green),
-                        ),
-                        SizedBox(
-                          width: 4,
-                        ),
-                        FutureBuilder<int>(
-                          future: getDiscordOnlineNumber(),
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              return Text('${snapshot.data} members online');
-                            } else {
-                              return Text('Loading...');
-                            }
-                          },
-                        ),
-                      ],
+                    trailingWidget: Expanded(
+                      flex: 1,
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 10,
+                            width: 10,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle, color: Colors.green),
+                          ),
+                          SizedBox(
+                            width: 4,
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: FutureBuilder<int>(
+                              future: getDiscordOnlineNumber(),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  return Text(
+                                      '${snapshot.data} members online');
+                                } else {
+                                  return Text('Loading...');
+                                }
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(

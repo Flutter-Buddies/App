@@ -41,16 +41,19 @@ class DaseedWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 SizedBox(
-                  height: 130,
+                  height: 80,
                 ),
                 Center(
                   child: Container(
                     child: CircleAvatar(
-                      radius: size.width / 8,
+                      radius: size.width / 10,
                       backgroundImage: ExactAssetImage(
                           "assets/profile_images/daseed_profile.jpg"),
                     ),
                   ),
+                ),
+                SizedBox(
+                  height: 10,
                 ),
                 MyProfile(),
               ],
