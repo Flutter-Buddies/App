@@ -13,12 +13,12 @@ class DecorationPainter extends CustomPainter {
       ..color = color
       ..style = PaintingStyle.fill;
     final Path path = Path()..moveTo(0, 0);
-    path.quadraticBezierTo(0, 45, width * 0.35, 30);
-    path.quadraticBezierTo(width * 0.4, 25, width * 0.4, 60);
-    path.arcToPoint(Offset(width * 0.6, 50),
-        radius: const Radius.circular(10.0), clockwise: false);
-    path.quadraticBezierTo(width * 0.6, 25, width * 0.65, 30);
-    path.quadraticBezierTo(width, 45, width, 0);
+    path.quadraticBezierTo(0, 30, width * 0.35, 17);
+    path.quadraticBezierTo(width * 0.4, 15, width * 0.4, 30);
+    path.arcToPoint(Offset(width * 0.6, 30),
+        radius: const Radius.circular(5.0), clockwise: false);
+    path.quadraticBezierTo(width * 0.6, 15, width * 0.65, 20);
+    path.quadraticBezierTo(width, 30, width, 0);
     path.lineTo(width, height);
     path.lineTo(0, height);
     path.close();

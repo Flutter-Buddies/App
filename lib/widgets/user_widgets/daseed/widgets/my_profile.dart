@@ -28,110 +28,140 @@ class _MyProfileState extends State<MyProfile> {
     return Expanded(
       flex: 1,
       child: Container(
-        width: size.width * 0.8,
+        width: size.width * 0.95,
         height: size.height * 0.6,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Card(
-              margin: EdgeInsets.all(16.0),
-              elevation: 10.0,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Pierre-emmanuel Legrain\r\n.NET Software Engineer & Flutter maniac",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.bold),
+        child: Stack(children: [
+          Column(
+            children: [
+              SizedBox(
+                height: 130,
+              ),
+              Expanded(
+                flex: 1,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Card(
+                        margin: EdgeInsets.only(left: 16.0, right: 16.0),
+                        elevation: 10.0,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 400),
+                            curve: Curves.easeInOut,
+                            height: height,
+                            child: AnimatedOpacity(
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.easeInOut,
+                              opacity: opacity,
+                              child: Text(
+                                _textController.text,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Card(
-              margin: EdgeInsets.all(16.0),
-              elevation: 10.0,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 400),
-                  curve: Curves.easeInOut,
-                  height: height,
-                  child: AnimatedOpacity(
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeInOut,
-                    opacity: opacity,
+            ],
+          ),
+          Positioned(
+            top: 0,
+            left: 0,
+            child: Column(
+              children: [
+                Card(
+                  margin: EdgeInsets.only(left: 16.0, right: 16.0),
+                  elevation: 10.0,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      _textController.text,
+                      "Pierre-emmanuel Legrain\r\n.NET Software Engineer & Flutter maniac",
                       textAlign: TextAlign.center,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
-              ),
-            ),
-            Card(
-              margin: EdgeInsets.all(16.0),
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  top: 8.0,
-                  bottom: 8.0,
+                SizedBox(
+                  height: 10.0,
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    IconButton(
-                        icon: Icon(Icons.backpack),
-                        onPressed: () async {
-                          if (textNumber != 0) {
-                            setState(() {
-                              opacity = 0.0;
-                            });
-                            await Future.delayed(
-                                const Duration(milliseconds: 500));
-                            setState(() {
-                              height = 195.0;
-                              opacity = 1.0;
-                            });
-                            textNumber = 0;
-                          }
-                        }),
-                    IconButton(
-                        icon: Icon(Icons.casino),
-                        onPressed: () async {
-                          if (textNumber != 1) {
-                            setState(() {
-                              opacity = 0.0;
-                            });
-                            await Future.delayed(
-                                const Duration(milliseconds: 500));
-                            setState(() {
-                              height = 80.0;
-                              opacity = 1.0;
-                            });
-                          }
-                          textNumber = 1;
-                        }),
-                    IconButton(
-                      icon: Icon(Icons.dashboard),
-                      onPressed: () async {
-                        if (textNumber != 2) {
-                          setState(() {
-                            opacity = 0.0;
-                          });
-                          await Future.delayed(
-                              const Duration(milliseconds: 500));
-                          setState(() {
-                            height = 100.0;
-                            opacity = 1.0;
-                          });
-                          textNumber = 2;
-                        }
-                      },
+                Card(
+                  margin: EdgeInsets.only(left: 16.0, right: 16.0),
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      top: 8.0,
+                      bottom: 8.0,
                     ),
-                  ],
+                    child: Container(
+                      width: (size.width * 0.95) - 32,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          IconButton(
+                              icon: Icon(Icons.backpack),
+                              onPressed: () async {
+                                if (textNumber != 0) {
+                                  setState(() {
+                                    opacity = 0.0;
+                                  });
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 500));
+                                  setState(() {
+                                    height = 195.0;
+                                    opacity = 1.0;
+                                  });
+                                  textNumber = 0;
+                                }
+                              }),
+                          IconButton(
+                              icon: Icon(Icons.casino),
+                              onPressed: () async {
+                                if (textNumber != 1) {
+                                  setState(() {
+                                    opacity = 0.0;
+                                  });
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 500));
+                                  setState(() {
+                                    height = 80.0;
+                                    opacity = 1.0;
+                                  });
+                                }
+                                textNumber = 1;
+                              }),
+                          IconButton(
+                            icon: Icon(Icons.dashboard),
+                            onPressed: () async {
+                              if (textNumber != 2) {
+                                setState(() {
+                                  opacity = 0.0;
+                                });
+                                await Future.delayed(
+                                    const Duration(milliseconds: 500));
+                                setState(() {
+                                  height = 100.0;
+                                  opacity = 1.0;
+                                });
+                                textNumber = 2;
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ]),
       ),
     );
   }
