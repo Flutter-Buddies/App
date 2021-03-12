@@ -67,11 +67,13 @@ class ProjectCard extends StatelessWidget {
                   width: imageSize,
                   child: CachedNetworkImage(
                     imageUrl: projectImageUri.toString(),
-                    placeholder: (context, _) =>  Container(
+                    placeholder: (context, _) => Container(
                       height: imageSize * 0.3,
                       width: imageSize * 0.3,
                       child: CircularProgressIndicator(),
                     ),
+                    errorWidget: (context, _, __) =>
+                        Image.asset('assets/global_images/flutterbuddies.png'),
                   ),
                 ),
                 Positioned(
