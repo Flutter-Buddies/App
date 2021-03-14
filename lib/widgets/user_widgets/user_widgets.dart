@@ -21,6 +21,16 @@ import 'goober0329/qr_game_of_life/game_of_life_widget.dart';
 import 'package:flutter_buddies/widgets/user_widgets/daseed/widgets/decoration_painter.dart';
 import 'package:flutter_buddies/widgets/user_widgets/daseed/widgets/my_profile.dart';
 
+// imports for robots
+import 'dart:async';
+import 'dart:math';
+import 'package:flutter/scheduler.dart';
+
+import 'robots/secrets.dart';
+import 'robots/monster_controller.dart';
+import 'robots/bloc/robots_bloc.dart';
+import 'robots/robots_models.dart';
+
 //defines the widget info abstract class
 part 'widget_info.dart';
 
@@ -40,6 +50,7 @@ part 'slovnicki/slovnicki_widget.dart';
 part 'hsinats/hsinats_widget.dart';
 part 'daseed/pierre-emmanuel_legrain.dart';
 part 'sleepingisimportant/sleepingisimportant_widget.dart';
+part 'robots/robots_widget.dart';
 
 // TODO: 5. Add your Widget Info class object from step 4a to the list
 List<WidgetInfo> widgetInfoList = [
@@ -50,6 +61,7 @@ List<WidgetInfo> widgetInfoList = [
   hsinats,
   daseed,
   sleepingisimportant,
+  robots,
   //exampleInfo, // <-- from TODO step 5: add your widgetinfo class here
 ];
 // can this be done without instantiating or adding the widgetinfo to the list? (see user_widgets.dart)
