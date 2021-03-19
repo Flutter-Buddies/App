@@ -10,8 +10,7 @@ class EventRepository {
 
   static EventRepository get() => EventRepository();
 
-  // TODO
-  Future<List<Event>> fetchAll({bool fresh: false}) async {
+  Future<List<Event>> fetchAll({bool fresh = false}) async {
     if (_events.isEmpty || fresh) {
       // fetch events from calendar API
       final response = await http.get(
@@ -30,7 +29,9 @@ class EventRepository {
             // some of the events are 'cancelled' and
             // don't have required attributes for parsing into Event
             _events.add(Event.fromJson(itemJson));
-          } catch (e) {}
+          } catch (e) {
+            print('ERROR (fetchAll): $e');
+          }
         });
       }
     }
@@ -38,14 +39,14 @@ class EventRepository {
   }
 
   Future<List<Event>> take([int count = 4]) async {
-    await this.fetchAll();
+    await fetchAll();
     return _events.take(count).toList();
   }
 }
 
 class FakeEventRepository extends EventRepository {
   @override
-  Future<List<Event>> fetchAll({bool fresh: false}) async {
+  Future<List<Event>> fetchAll({bool fresh = false}) async {
     int eventsNumber = 10;
     if (_events.isEmpty || _events.length != eventsNumber || fresh) {
       _events = [];

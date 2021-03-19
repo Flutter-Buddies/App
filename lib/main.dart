@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_buddies/constants/app_constants.dart';
 import 'package:flutter_buddies/modules/screens/about_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'modules/screens/user_widgets_screen.dart';

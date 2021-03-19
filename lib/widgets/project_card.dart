@@ -17,18 +17,6 @@ class ProjectCard extends StatelessWidget {
     this.url,
   });
 
-  Widget _errorWidget(BuildContext context, String url, dynamic error) {
-    return Column(
-      children: [
-        Icon(Icons.error),
-        Text(
-          url,
-          overflow: TextOverflow.clip,
-        )
-      ],
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final double imageSize =

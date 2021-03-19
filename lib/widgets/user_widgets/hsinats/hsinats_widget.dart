@@ -1,11 +1,20 @@
 part of user_widgets;
 
 class Hsinats extends WidgetInfo {
-  get name => "Paul's Developer Widget";
-  get description => "Chemist | Educator | Flutter Developer";
-  get developer => "Paul Stanish";
-  get logoPath => "assets/profile_images/hsinats_profile.jpg";
-  get widget => HsinatsWidget();
+  @override
+  String get name => "Paul's Developer Widget";
+
+  @override
+  String get description => 'Chemist | Educator | Flutter Developer';
+
+  @override
+  String get developer => 'Paul Stanish';
+
+  @override
+  String get logoPath => 'assets/profile_images/hsinats_profile.jpg';
+
+  @override
+  Widget get widget => HsinatsWidget();
 }
 
 Hsinats hsinats = Hsinats();
@@ -29,7 +38,7 @@ class HsinatsWidget extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-            Image(image: AssetImage("assets/global_images/quantum_dots.jpg")),
+            Image(image: AssetImage('assets/global_images/quantum_dots.jpg')),
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(

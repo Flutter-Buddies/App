@@ -2,12 +2,21 @@ part of user_widgets;
 
 //user defines from abstract class needed information
 class Zambrella extends WidgetInfo {
-  get name => 'Doug \"Zambrella\" Todd';
-  get description =>
-      "DOTA player | Flutter Developer | Biochemistry Graduate | Tech Enthusiast | Metal Music Lover";
-  get developer => "Doug Todd"; //use any name for yourself
-  get logoPath => "assets/profile_images/Zambrella_profile.jpg";
-  get widget => ZambrellaWidget();
+  @override
+  String get name => 'Doug "Zambrella" Todd';
+
+  @override
+  String get description =>
+      'DOTA player | Flutter Developer | Biochemistry Graduate | Tech Enthusiast | Metal Music Lover';
+
+  @override
+  String get developer => 'Doug Todd'; //use any name for yourself
+
+  @override
+  String get logoPath => 'assets/profile_images/Zambrella_profile.jpg';
+
+  @override
+  Widget get widget => ZambrellaWidget();
 }
 
 Zambrella zambrella = Zambrella();
@@ -164,9 +173,9 @@ class _ZambrellaWidgetState extends State<ZambrellaWidget> {
                           ),
                           InfoSection(
                             title: 'About',
-                            body: """
+                            body: '''
 I studied biochemistry at Bath univeristy, after which I became a DOTA 2 caster. Through casting I met the founders of an esports startup where I have spent the last 4 years running their marketing and growth. I am now looking for a job as a Flutter developer.
-                  """,
+                  ''',
                             dividerColor: _darkSecondary,
                             icon: Icons.info_outline,
                             iconColor: _accentColor,
@@ -176,9 +185,9 @@ I studied biochemistry at Bath univeristy, after which I became a DOTA 2 caster.
                           ),
                           InfoSection(
                             title: 'My Flutter journey',
-                            body: """
+                            body: '''
 I started my Flutter journey almost 2 years ago after I expressed an interest in programming and a colleague suggested Angela's course on Udemy. I've been learning on and off but I am now ready to take it to the next level and become an app developer full time!
-                  """,
+                  ''',
                             dividerColor: _darkSecondary,
                             icon: Icons.code,
                             iconColor: _accentColor,
@@ -188,7 +197,7 @@ I started my Flutter journey almost 2 years ago after I expressed an interest in
                           ),
                           InfoSection(
                             title: 'Skills',
-                            body: """
+                            body: '''
 - Flutter app development
 - Online marketing
 - Designing ad creatives
@@ -197,7 +206,7 @@ I started my Flutter journey almost 2 years ago after I expressed an interest in
 - Prototyping
 - Metal music production
 - Biochemistry
-                  """,
+                  ''',
                             dividerColor: _darkSecondary,
                             icon: Icons.flash_on,
                             iconColor: _accentColor,
@@ -207,12 +216,12 @@ I started my Flutter journey almost 2 years ago after I expressed an interest in
                           ),
                           InfoSection(
                             title: 'Interests',
-                            body: """
+                            body: '''
 - Gaming
 - Game Development
 - Esports (mainly DOTA 2)
 - Metal music & production
-                  """,
+                  ''',
                             dividerColor: _darkSecondary,
                             icon: Icons.person,
                             iconColor: _accentColor,
