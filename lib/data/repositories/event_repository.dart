@@ -25,7 +25,13 @@ class EventRepository {
         final Map<String, dynamic> eventsJson = json.decode(response.body);
         final List<dynamic> eventItems = eventsJson['items'];
         // transform to Events
-        _events = eventItems.map((json) => Event.fromJson(json)).toList();
+        eventItems.forEach((itemJson) {
+          try {
+            // some of the events are 'cancelled' and
+            // don't have required attributes for parsing into Event
+            _events.add(Event.fromJson(itemJson));
+          } catch (e) {}
+        });
       }
     }
     return _events;
