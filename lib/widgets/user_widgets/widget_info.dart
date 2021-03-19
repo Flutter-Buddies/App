@@ -13,6 +13,7 @@ abstract class WidgetInfo {
   String get developer => _developer;
   String get logoPath => _logoPath;
   Widget get widget => _widget;
+  int get projectsCount => 1;
 
   // can something like this work to add to the list dynamically?
   //void addToList() => widgetInfoList.add(this);

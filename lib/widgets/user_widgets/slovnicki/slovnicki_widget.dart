@@ -7,6 +7,7 @@ class Slovnicki extends WidgetInfo {
   get developer => 'Sandro Lovnički';
   get logoPath => 'assets/profile_images/slovnicki_profile.jpeg';
   get widget => SlovnickiWidget();
+  int projectsCount = 2;
 }
 
 Slovnicki slovnicki = Slovnicki();

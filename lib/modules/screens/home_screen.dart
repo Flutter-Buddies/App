@@ -167,7 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: 120,
+                    height: 180,
                     child: ListView(
                       physics: BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
@@ -301,18 +301,53 @@ class MemberCircle extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8.0),
+          padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 32),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                height: 75,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage(widgetInfo.logoPath),
+              Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Container(
+                    height: 76,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage(widgetInfo.logoPath),
+                      ),
+                      shape: BoxShape.circle,
                     ),
-                    shape: BoxShape.circle),
+                  ),
+                  Positioned(
+                    top: -32,
+                    left: 18,
+                    right: 18,
+                    child: SizedBox(
+                      width: 40,
+                      height: 40,
+                      child: Stack(
+                        children: [
+                          Icon(
+                            FontAwesomeIcons.crown,
+                            color: Colors.yellow[800],
+                            size: 40,
+                          ),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              '${widgetInfo.projectsCount}',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
               SizedBox(
                 height: 4,
@@ -342,12 +377,12 @@ class SeeMoreCircle extends MemberCircle {
       child: GestureDetector(
         onTap: () => Navigator.pushNamed(context, 'user_widgets_screen'),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8.0),
+          padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 32),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                height: 75,
+                height: 76,
                 decoration: BoxDecoration(
                   color: Colors.grey[350],
                   shape: BoxShape.circle,
