@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_buddies/constants/secrets.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter_buddies/data/models/event.dart';
@@ -15,8 +15,9 @@ class EventRepository {
     if (_events.isEmpty || fresh) {
       // fetch events from calendar API
       final response = await http.get(
-          'https://www.googleapis.com/calendar/v3/calendars/gh1n5rutlqgsjpvqrba97e9atk@group.calendar.google.com/events?key=' +
-              DotEnv().env['CALENDAR_KEY']);
+        'https://www.googleapis.com/calendar/v3/calendars/gh1n5rutlqgsjpvqrba97e9atk@group.calendar.google.com/events?key=' +
+            Secrets.calendar_key,
+      );
       if (response.statusCode != 200) {
         // handle error
         print('ERROR ${response.statusCode}: ${response.reasonPhrase}');
