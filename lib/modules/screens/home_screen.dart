@@ -130,56 +130,6 @@ class _HomeScreenState extends State<HomeScreen> {
               delegate: SliverChildListDelegate(
                 [
                   SectionHeader(
-                    leadingIcon: Icons.calendar_today,
-                    headerText: 'Upcoming Events',
-                    headerFunction: () {
-                      Navigator.pushNamed(context, 'schedule');
-                    },
-                    trailingWidget: Text(
-                      'See more',
-                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                      ),
-                    ),
-                  ),
-                  FutureBuilder<List<Event>>(
-                    future: _eventRepository.take(),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return GridView.count(
-                          // Shrink wrap tells the grid view to let the children define the size
-                          shrinkWrap: true,
-                          padding: EdgeInsets.symmetric(horizontal: 16),
-                          mainAxisSpacing: 16,
-                          crossAxisSpacing: 16,
-                          // Setting to none so that the shadow isn't clipped
-                          clipBehavior: Clip.none,
-                          childAspectRatio: 1.5,
-                          crossAxisCount: 2,
-                          physics: NeverScrollableScrollPhysics(),
-                          children: snapshot.data
-                              .map((event) => EventCard(
-                                    eventName: event.name,
-                                    eventImage: AssetImage(
-                                        'assets/global_images/Event_Image.png'), // Use generic flutter + calendar image
-                                    eventDateTime: event.dateTime,
-                                  ))
-                              .toList(),
-                        );
-                      } else {
-                        return SizedBox(
-                          height: 240,
-                          child: Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                        );
-                      }
-                    },
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  SectionHeader(
                     leadingIcon: Icons.people,
                     headerText: 'Member pages',
                     headerFunction: () {
@@ -227,6 +177,56 @@ class _HomeScreenState extends State<HomeScreen> {
                               .toList() +
                           [SeeMoreCircle()],
                     ),
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  SectionHeader(
+                    leadingIcon: Icons.calendar_today,
+                    headerText: 'Upcoming Events',
+                    headerFunction: () {
+                      Navigator.pushNamed(context, 'schedule');
+                    },
+                    trailingWidget: Text(
+                      'See more',
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ),
+                  FutureBuilder<List<Event>>(
+                    future: _eventRepository.take(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return GridView.count(
+                          // Shrink wrap tells the grid view to let the children define the size
+                          shrinkWrap: true,
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          mainAxisSpacing: 16,
+                          crossAxisSpacing: 16,
+                          // Setting to none so that the shadow isn't clipped
+                          clipBehavior: Clip.none,
+                          childAspectRatio: 1.5,
+                          crossAxisCount: 2,
+                          physics: NeverScrollableScrollPhysics(),
+                          children: snapshot.data
+                              .map((event) => EventCard(
+                                    eventName: event.name,
+                                    eventImage: AssetImage(
+                                        'assets/global_images/Event_Image.png'), // Use generic flutter + calendar image
+                                    eventDateTime: event.dateTime,
+                                  ))
+                              .toList(),
+                        );
+                      } else {
+                        return SizedBox(
+                          height: 240,
+                          child: Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        );
+                      }
+                    },
                   ),
                   SizedBox(
                     height: 8,
