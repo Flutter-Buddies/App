@@ -1,3 +1,3 @@
 class Secrets {
-  static final String calendar_key = 'YOUR_API_KEY';
+  static const String calendar_key = 'YOUR_API_KEY';
 }
