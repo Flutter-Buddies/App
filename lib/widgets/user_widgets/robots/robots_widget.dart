@@ -1,11 +1,20 @@
 part of user_widgets;
 
 class Robots extends WidgetInfo {
-  get name => 'Robots'; //name your widget, not used in design currently
-  get description => "Flutter Developer";
-  get developer => "Kris Skotheim"; //use any name for yourself
-  get logoPath => "assets/profile_images/robots_avatar_min.png";
-  get widget => RobotsProfile();
+  @override
+  String get name => 'Robots'; //name your widget, not used in design currently
+
+  @override
+  String get description => 'Flutter Developer';
+
+  @override
+  String get developer => 'Kris Skotheim'; //use any name for yourself
+
+  @override
+  String get logoPath => 'assets/profile_images/robots_avatar_min.png';
+
+  @override
+  Widget get widget => RobotsProfile();
 }
 
 Robots robots = Robots();
@@ -261,15 +270,15 @@ class _RobotsProfileState extends State<RobotsProfile> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  "Defeated: ${state.monstersDefeated}",
+                  'Defeated: ${state.monstersDefeated}',
                   style: whiteStyle,
                 ),
                 Text(
-                  "Health: ${state.robotHealth}",
+                  'Health: ${state.robotHealth}',
                   style: whiteStyle,
                 ),
                 Text(
-                  "Level: ${state.level}",
+                  'Level: ${state.level}',
                   style: whiteStyle,
                 ),
               ],
@@ -278,7 +287,7 @@ class _RobotsProfileState extends State<RobotsProfile> {
         ),
       );
 
-  static const TextStyle whiteStyle = const TextStyle(color: Colors.white);
+  static const TextStyle whiteStyle = TextStyle(color: Colors.white);
 }
 
 class UpgradeButtons extends StatelessWidget {
@@ -319,7 +328,7 @@ class UpgradeButtons extends StatelessWidget {
     );
   }
 
-  static const TextStyle blueStyle = const TextStyle(color: Colors.lightBlue);
+  static const TextStyle blueStyle = TextStyle(color: Colors.lightBlue);
 }
 
 class UpgradeButton extends StatelessWidget {
@@ -347,8 +356,7 @@ class UpgradeButton extends StatelessWidget {
     );
   }
 
-  static const TextStyle yellowStyle =
-      const TextStyle(color: Colors.yellowAccent);
+  static const TextStyle yellowStyle = TextStyle(color: Colors.yellowAccent);
 }
 
 class RobotSprite extends StatelessWidget {
@@ -486,19 +494,5 @@ class BottomRowButtons extends StatelessWidget {
             );
           }),
     );
-  }
-
-  void _processKeystroke(RawKeyEvent event) {
-    final lKey = event.logicalKey;
-    final cKey = event.character;
-    if (lKey == LogicalKeyboardKey.arrowLeft || cKey == 'a') {
-      bloc.incRobotVelocity(-1);
-    }
-    if (lKey == LogicalKeyboardKey.arrowRight || cKey == 'd') {
-      bloc.incRobotVelocity(1);
-    }
-    if (lKey == LogicalKeyboardKey.space && bloc.state.level > 1) {
-      bloc.fireLaser();
-    }
   }
 }

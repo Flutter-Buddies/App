@@ -4,7 +4,7 @@ class Missile {
   final double x;
   final double y;
 
-  static const List<Color> MISSILE_COLORS = const [
+  static const List<Color> MISSILE_COLORS = <Color>[
     Colors.orange,
     Colors.yellow,
     Colors.red,

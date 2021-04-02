@@ -12,7 +12,6 @@ import 'package:flutter_buddies/widgets/project_card.dart';
 import 'package:flutter_buddies/widgets/section_header.dart';
 import 'package:flutter_buddies/widgets/user_widgets/user_widgets.dart' as uw;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 

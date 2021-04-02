@@ -1,12 +1,21 @@
 part of user_widgets;
 
 class Goober extends WidgetInfo {
-  get name => "Grayson's Developer Widget";
-  get description => "Materials Engineer | Avid Cyclist | "
-      "Programming Enthusiast | Adventure Seeker";
-  get developer => "Grayson Harrington";
-  get logoPath => "assets/profile_images/harrington_profile.jpg";
-  get widget => GooberWidget();
+  @override
+  String get name => "Grayson's Developer Widget";
+
+  @override
+  String get description => '''Materials Engineer | Avid Cyclist
+| Programming Enthusiast | Adventure Seeker''';
+
+  @override
+  String get developer => 'Grayson Harrington';
+
+  @override
+  String get logoPath => 'assets/profile_images/harrington_profile.jpg';
+
+  @override
+  Widget get widget => GooberWidget();
 }
 
 Goober goober = Goober();
@@ -56,7 +65,7 @@ class GooberWidget extends StatelessWidget {
                   WidgetTileDivider(),
                   // GOL GLIDER
                   WidgetTile(
-                    text: "Game of Life Glider Animation",
+                    text: 'Game of Life Glider Animation',
                     widget: Center(
                       child: GoLGlider(
                         gliderSize: MediaQuery.of(context).size.width * 0.6,
@@ -67,7 +76,7 @@ class GooberWidget extends StatelessWidget {
                   ),
                   WidgetTileDivider(),
                   WidgetTile(
-                    text: "To be continued",
+                    text: 'To be continued',
                     widget: Icon(
                       Icons.more_horiz,
                       size: 30,
@@ -131,13 +140,13 @@ class AboutMe extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Text(
-        "I graduated from Iowa State University with a degree in Materials Engineering."
-        " Along with my interest for Materials Engineering I also actively pursue"
-        " my interest in programming. Recently I started learning Flutter in my"
-        " spare time and I have really loved the language."
-        "\n\nBelow are some of my favorite widgets that I have made while working on "
-        "different projects."
-        "\nEnjoy!",
+        '''I graduated from Iowa State University with a degree in Materials Engineering.
+ Along with my interest for Materials Engineering I also actively pursue
+ my interest in programming. Recently I started learning Flutter in my
+ spare time and I have really loved the language.
+\n\nBelow are some of my favorite widgets that I have made while working on 
+different projects.
+\nEnjoy!''',
         style: TextStyle(fontSize: 16),
         textAlign: TextAlign.center,
       ),

@@ -1,6 +1,4 @@
 import 'package:faker/faker.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 String _makeTag(bool archived, bool disabled) {
   if (archived) {
@@ -10,28 +8,6 @@ String _makeTag(bool archived, bool disabled) {
     return 'Disabled';
   }
   return 'Active';
-}
-
-// Todo: Move this _getImage function to the FutureBuilder in the project_card file
-// Todo: Remove this - it is no longer needed.
-Future<NetworkImage> _getImage(
-    String url, String defaultBranch, String repoName) async {
-  String imageUrl = 'https://raw.githubusercontent.com' +
-      '/Flutter-Buddies' +
-      '/$repoName/' +
-      defaultBranch +
-      '/cover_image.png';
-  // print(imageUrl);
-
-  http.Response response = await http.get(imageUrl);
-
-  if (response.statusCode == 200) {
-    return NetworkImage(imageUrl);
-  } else {
-    // print(response.statusCode);
-    return NetworkImage(
-        'https://picsum.photos/seed/' + faker.lorem.word() + '/600');
-  }
 }
 
 const String SCHEME = 'https';

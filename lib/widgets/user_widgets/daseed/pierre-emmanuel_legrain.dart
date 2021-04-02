@@ -1,11 +1,21 @@
 part of user_widgets;
 
 class DaseedInfo extends WidgetInfo {
-  get name => "Pierre-emmanuel aka Daseed's widget ";
-  get description => ".NET Software Engineer - Boardgamer - Flutter maniac";
-  get developer => "Pierre-emmanuel Legrain";
-  get logoPath => "assets/profile_images/daseed_profile.jpg";
-  get widget => DaseedWidget();
+  @override
+  String get name => "Pierre-emmanuel aka Daseed's widget ";
+
+  @override
+  String get description =>
+      '.NET Software Engineer - Boardgamer - Flutter maniac';
+
+  @override
+  String get developer => 'Pierre-emmanuel Legrain';
+
+  @override
+  String get logoPath => 'assets/profile_images/daseed_profile.jpg';
+
+  @override
+  Widget get widget => DaseedWidget();
 }
 
 DaseedInfo daseed = DaseedInfo();
@@ -48,7 +58,8 @@ class DaseedWidget extends StatelessWidget {
                     child: CircleAvatar(
                       radius: size.width / 10,
                       backgroundImage: ExactAssetImage(
-                          "assets/profile_images/daseed_profile.jpg"),
+                        daseed.logoPath,
+                      ),
                     ),
                   ),
                 ),

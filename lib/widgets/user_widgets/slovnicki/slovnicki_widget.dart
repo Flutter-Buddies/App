@@ -1,12 +1,23 @@
 part of user_widgets;
 
 class Slovnicki extends WidgetInfo {
-  get name => 'Sandro Lovnički\n@sly, @slovnicki';
-  get description =>
+  @override
+  String get name => 'Sandro Lovnički\n@sly, @slovnicki';
+
+  @override
+  String get description =>
       'Computer Scientist, Mathematician, Software Engineer, Flutter Enthusiast';
-  get developer => 'Sandro Lovnički';
-  get logoPath => 'assets/profile_images/slovnicki_profile.jpeg';
-  get widget => SlovnickiWidget();
+
+  @override
+  String get developer => 'Sandro Lovnički';
+
+  @override
+  String get logoPath => 'assets/profile_images/slovnicki_profile.jpeg';
+
+  @override
+  Widget get widget => SlovnickiWidget();
+
+  @override
   int projectsCount = 2;
 }
 
@@ -54,13 +65,13 @@ class SlovnickiWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  """I studied (and finished) Computer Science and Mathematics in Zagreb, Croatia.
+                  '''I studied (and finished) Computer Science and Mathematics in Zagreb, Croatia.
 
 I am the creator of pLam - a programming language for studying and exploring pure λ-calculus.
 
 Lately, I am very passionate about Dart and Flutter to which I contribute by developing packages and paving the road for Flutter web and desktop.
 
-I would like to build an AI to peacefully rule the world or invent a new model of computation.""",
+I would like to build an AI to peacefully rule the world or invent a new model of computation.''',
                   style: TextStyle(
                     color: Colors.grey[300],
                   ),
@@ -91,35 +102,35 @@ I would like to build an AI to peacefully rule the world or invent a new model o
           color: Colors.white,
           fontWeight: FontWeight.bold,
         ),
-        children: const [
-          const TextSpan(
+        children: <InlineSpan>[
+          TextSpan(
             text: 'Computer Scientist',
           ),
-          const TextSpan(
+          TextSpan(
             text: ' && ',
             style: TextStyle(
-              color: const Color(0xFF9E9E9E),
+              color: Color(0xFF9E9E9E),
             ),
           ),
-          const TextSpan(
+          TextSpan(
             text: 'Mathematician',
           ),
-          const TextSpan(
+          TextSpan(
             text: ' && ',
             style: TextStyle(
-              color: const Color(0xFF9E9E9E),
+              color: Color(0xFF9E9E9E),
             ),
           ),
-          const TextSpan(
+          TextSpan(
             text: 'Software Engineer',
           ),
-          const TextSpan(
+          TextSpan(
             text: ' && ',
             style: TextStyle(
-              color: const Color(0xFF9E9E9E),
+              color: Color(0xFF9E9E9E),
             ),
           ),
-          const TextSpan(
+          TextSpan(
             text: 'Flutter Enthusiast',
           ),
         ],

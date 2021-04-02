@@ -132,16 +132,15 @@ class RobotsBloc {
     }
 
     //remove missiles + monsters
-    for(var missile in monsterMissilesToRemove){
+    for (var missile in monsterMissilesToRemove) {
       monsterMissiles.remove(missile);
     }
-    for(var missile in userMissilesToRemove){
+    for (var missile in userMissilesToRemove) {
       missiles.remove(missile);
     }
-    for(var monster in monstersToRemove){
+    for (var monster in monstersToRemove) {
       monsters.remove(monster);
     }
-    
 
     // check level
     int level = state.level;
@@ -186,8 +185,9 @@ class RobotsBloc {
 
   void incRobotVelocity(double inc) {
     double velocity = state.robotVelocity + inc;
-    if (velocity < -1 * MAX_ROBOT_VELOCITY)
+    if (velocity < -1 * MAX_ROBOT_VELOCITY) {
       velocity = -1.0 * MAX_ROBOT_VELOCITY;
+    }
     if (velocity > MAX_ROBOT_VELOCITY) velocity = MAX_ROBOT_VELOCITY;
     if (!(state.gameOver || state.robotDestroyed)) {
       emit(state.copyWith(robotVelocity: velocity));
@@ -209,7 +209,7 @@ class RobotsBloc {
       : null;
 
   void fireMonsterMissile() {
-    if (state.monsters.length > 0) {
+    if (state.monsters.isNotEmpty) {
       Monster randomMonster =
           state.monsters[Random().nextInt(state.monsters.length)];
       double x = randomMonster.x;

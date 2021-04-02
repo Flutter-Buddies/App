@@ -163,18 +163,18 @@ class GameOfLife extends ChangeNotifier {
     bool centered = false,
   }) {
     if (patternCell == null && patternBool == null) {
-      throw StateError("pattern cannot be null");
+      throw StateError('pattern cannot be null');
     }
 
     bool cellOrBool = patternCell != null;
 
     if (cellOrBool) {
-      if (patternCell.length == 0) {
-        throw StateError("pattern must be of size greater than 0");
+      if (patternCell.isEmpty) {
+        throw StateError('pattern must be of size greater than 0');
       }
     } else {
-      if (patternBool.length == 0) {
-        throw StateError("pattern must be of size greater than 0");
+      if (patternBool.isEmpty) {
+        throw StateError('pattern must be of size greater than 0');
       }
     }
 

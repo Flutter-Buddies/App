@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_buddies/constants/app_constants.dart';
-import 'package:flutter_buddies/widgets/user_widgets/user_widgets.dart' as uw;
 
 import '../../widgets/user_widgets/user_widgets.dart';
-//import 'package:flutter_buddies/widgets/user_widgets/widget_info.dart';
 
 //TODO: Test
 

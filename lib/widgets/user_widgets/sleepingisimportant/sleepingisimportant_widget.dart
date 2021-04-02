@@ -1,13 +1,23 @@
 part of user_widgets;
 
 class Sleepingisimportant extends WidgetInfo {
-  get name =>
+  @override
+  String get name =>
       'Sleepingisimportant'; //name your widget, not used in design currently
-  get description =>
+
+  @override
+  String get description =>
       "Flutter beginner | Cat's Slave | Bubble Teaholic | Meme Lover";
-  get developer => "Alice Woo"; //use any name for yourself
-  get logoPath => "assets/profile_images/sleepingisimportant_profile.jpg";
-  get widget => SleepingisimportantWidget();
+
+  @override
+  String get developer => 'Alice Woo'; //use any name for yourself
+
+  @override
+  String get logoPath =>
+      'assets/profile_images/sleepingisimportant_profile.jpg';
+
+  @override
+  Widget get widget => SleepingisimportantWidget();
 }
 
 Sleepingisimportant sleepingisimportant = Sleepingisimportant();
@@ -66,7 +76,7 @@ class _SleepingisimportantWidgetState extends State<SleepingisimportantWidget>
   }
 
   @override
-  dispose() {
+  void dispose() {
     _controller.dispose(); // you need this
     super.dispose();
   }
@@ -198,7 +208,7 @@ class _SleepingisimportantWidgetState extends State<SleepingisimportantWidget>
                                     'https://github.com/Sleepingisimportant'),
                                 child: Image(
                                   image: AssetImage(
-                                      "assets/global_images/GitHub-Logo-Shadowed.png"),
+                                      'assets/global_images/GitHub-Logo-Shadowed.png'),
                                   width:
                                       0.05 * MediaQuery.of(context).size.width,
                                 ),
@@ -254,7 +264,7 @@ class _SleepingisimportantWidgetState extends State<SleepingisimportantWidget>
                                         height: 0.01 *
                                             MediaQuery.of(context).size.height),
                                     Text(
-                                      """
+                                      '''
 Not coming from any STEM subjects but interested in any tech topics.
 
 Started my programming journey on my own since last year October, and fell in love with Flutter.
@@ -272,7 +282,7 @@ To be continued....
 
 
 
-""",
+''',
                                       style: TextStyle(
                                         fontWeight: FontWeight.w200,
                                         fontSize: 0.04 *
@@ -308,10 +318,10 @@ To be continued....
                     width: 0.14 * MediaQuery.of(context).size.width,
                     height: 0.07 * MediaQuery.of(context).size.height,
                     child: FloatingActionButton(
-                      heroTag: "btnDecrease",
+                      heroTag: 'btnDecrease',
                       onPressed: () {
                         setState(() {
-                          print("yes");
+                          print('yes');
                           print(waveHeightIndexInt);
                           waveHeightIndexInt = waveHeightIndexInt + 1;
 
@@ -336,7 +346,7 @@ To be continued....
                     width: 0.28 * MediaQuery.of(context).size.width,
                     height: 0.15 * MediaQuery.of(context).size.height,
                     child: FloatingActionButton(
-                      heroTag: "btnIncrease",
+                      heroTag: 'btnIncrease',
                       onPressed: () {
                         setState(() {
                           print(waveHeightIndexInt);
