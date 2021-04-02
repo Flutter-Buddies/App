@@ -31,7 +31,7 @@ class EventRepository {
             // don't have required attributes for parsing into Event
             _events.add(Event.fromJson(itemJson));
           } catch (e) {
-            print('ERROR (fetchAll): $e');
+            //print('ERROR (fetchAll): $e');
           }
         });
       }
