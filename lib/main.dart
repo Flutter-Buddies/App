@@ -7,7 +7,7 @@ import 'modules/screens/home_screen.dart';
 import 'modules/screens/projects_screen.dart';
 import 'modules/screens/schedule_screen.dart';
 
-Future main() async {
+void main() {
   runApp(MyApp());
 }
 
