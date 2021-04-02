@@ -2,12 +2,21 @@ part of user_widgets;
 
 //user defines from abstract class needed information
 class Rift extends WidgetInfo {
-  get name => 'Jason \"Rift\" Williams';
-  get description =>
-      "Flutter Developer | Philosopher | Futurist | Gamer | Dreamer";
-  get developer => "Jason Williams"; //use any name for yourself
-  get logoPath => "assets/profile_images/jason_profile.jpg";
-  get widget => RiftWidget();
+  @override
+  String get name => 'Jason "Rift" Williams';
+
+  @override
+  String get description =>
+      'Flutter Developer | Philosopher | Futurist | Gamer | Dreamer';
+
+  @override
+  String get developer => 'Jason Williams'; //use any name for yourself
+
+  @override
+  String get logoPath => 'assets/profile_images/jason_profile.jpg';
+
+  @override
+  Widget get widget => RiftWidget();
 }
 
 Rift rift = Rift();
@@ -26,7 +35,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  _renderName(context) {
+  Widget _renderName(context) {
     return Container(
       height: 100,
       child: Card(
@@ -48,7 +57,7 @@ class _HomePageState extends State<HomePage> {
             ),
             child: Center(
               child: Text(
-                "Jason Williams",
+                'Jason Williams',
                 style: TextStyle(
                   fontFamily: 'Pacifico',
                   fontSize: 30.0,
@@ -69,7 +78,7 @@ class _HomePageState extends State<HomePage> {
             ),
             child: Center(
               child: Text(
-                "\'Rift\'",
+                '\'Rift\'',
                 style: TextStyle(
                   fontFamily: 'Pacifico',
                   fontSize: 30.0,
@@ -85,7 +94,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  _renderBg() {
+  Widget _renderBg() {
     return Container(
       decoration: BoxDecoration(color: Color(0xFF74B856)),
     );
@@ -133,43 +142,43 @@ class _HomePageState extends State<HomePage> {
                   _renderBg(),
                   _renderName(context),
                   MyCard(
-                      "About",
-                      "#About",
-                      """I studied Computer Science at the University of the West Indies. From a young age I have always had an interest in technology. I believe that technology can be a great force for good in the world. Game development was what really made me want to get into programming but I have yet to truly go down that path.
-                """,
+                      'About',
+                      '#About',
+                      '''I studied Computer Science at the University of the West Indies. From a young age I have always had an interest in technology. I believe that technology can be a great force for good in the world. Game development was what really made me want to get into programming but I have yet to truly go down that path.
+                ''',
                       Icons.info,
                       40.0,
                       250.0),
                   MyCard(
-                      "My Flutter journey",
-                      "#My Flutter journey",
-                      """I started my Flutter Journey after the COVID-19 pandemic hit. The AppBrewry's Flutter Development BootCamp gave me a good understanding and appreciation for Flutter. I have worked on a couple personal projects and continue to dive deeper into flutter.
-                """,
+                      'My Flutter journey',
+                      '#My Flutter journey',
+                      '''I started my Flutter Journey after the COVID-19 pandemic hit. The AppBrewry's Flutter Development BootCamp gave me a good understanding and appreciation for Flutter. I have worked on a couple personal projects and continue to dive deeper into flutter.
+                ''',
                       Icons.airport_shuttle,
                       25.0,
                       220.0),
                   MyCard(
-                      "Skills",
-                      "#Skill",
-                      """-Flutter App Development
+                      'Skills',
+                      '#Skill',
+                      '''-Flutter App Development
 -Web Development
 -Digital Marketing
 -Design Thinking
 -Social Media Marketing
-                """,
+                ''',
                       Icons.flash_on_outlined,
                       40.0,
                       200.0),
                   MyCard(
-                      "Interests",
-                      "#Interests",
-                      """-Future Tech
+                      'Interests',
+                      '#Interests',
+                      '''-Future Tech
 -Psychology
 -Philosophy
 -Video Games
 -Virtual Reality
 -Mixed Reality
-                """,
+                ''',
                       Icons.gamepad_outlined,
                       40.0,
                       200.0),
@@ -204,7 +213,7 @@ class MyImageCard extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(35.0)),
             child: Image.asset(
-              "assets/profile_images/jason_profile.jpg",
+              'assets/profile_images/jason_profile.jpg',
               fit: BoxFit.fill,
               width: 20,
             ),
@@ -218,7 +227,7 @@ class MyImageCard extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(35.0)),
             child: Image.asset(
-              "assets/profile_images/jason_profile.jpg",
+              'assets/profile_images/jason_profile.jpg',
               fit: BoxFit.fill,
               width: 20,
             ),

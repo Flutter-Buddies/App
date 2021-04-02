@@ -12,14 +12,14 @@ class _MyProfileState extends State<MyProfile> {
   double height = 195.0;
   // This variable is used to test if the text card
   int textNumber = 0;
-  static String _textZero =
+  static final String _textZero =
       "After spending 12 years in the professional audio universe, I made a conversion to the world of software development. \r\n \r\nBeing a boardgame geek made me a problem solver, I think that's why I love code so much. \r\nI really see it has problems to solve to win the game. \r\n \r\nWhich is fun as life can be !";
-  static String _textOne =
-      "In my free time my main passions are boardgames, playing music, creating music, developing with Flutter, and of course spending time with my loved family.";
-  static String _textTwo =
-      "My projects are to become a better developer, help my son to grow the best way will fit him, and love my wife as much as I can.\r\nOf course all of this without forgetting my friends and family.";
+  static final String _textOne =
+      'In my free time my main passions are boardgames, playing music, creating music, developing with Flutter, and of course spending time with my loved family.';
+  static final String _textTwo =
+      'My projects are to become a better developer, help my son to grow the best way will fit him, and love my wife as much as I can.\r\nOf course all of this without forgetting my friends and family.';
   var texts = <String>[_textZero, _textOne, _textTwo];
-  TextEditingController _textController = TextEditingController();
+  final TextEditingController _textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +83,7 @@ class _MyProfileState extends State<MyProfile> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      "Pierre-emmanuel Legrain\r\n.NET Software Engineer & Flutter maniac",
+                      'Pierre-emmanuel Legrain\r\n.NET Software Engineer & Flutter maniac',
                       textAlign: TextAlign.center,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),

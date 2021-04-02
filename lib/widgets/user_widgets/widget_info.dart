@@ -4,7 +4,7 @@ abstract class WidgetInfo {
   final String _name = 'Blank';
   final String _description = 'Blank';
   final String _developer = 'Blank';
-  final String _logoPath = "path/to/blank.png";
+  final String _logoPath = 'path/to/blank.png';
 
   Widget _widget;
 

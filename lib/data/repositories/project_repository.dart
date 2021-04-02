@@ -8,7 +8,7 @@ class ProjectRepository {
 
   static ProjectRepository get() => ProjectRepository();
 
-  Future<List<Project>> fetchAll({bool fresh: false}) async {
+  Future<List<Project>> fetchAll({bool fresh = false}) async {
     if (_projects.isEmpty || fresh) {
       // fetch projects from GitHub API
       final response =
@@ -27,18 +27,18 @@ class ProjectRepository {
   }
 
   Future<List<Project>> take([int count = 3]) async {
-    await this.fetchAll();
+    await fetchAll();
     return _projects.take(count).toList();
   }
 
   Future<List<Project>> takeAll() async {
-    return await this.fetchAll();
+    return await fetchAll();
   }
 }
 
 class FakeProjectRepository extends ProjectRepository {
   @override
-  Future<List<Project>> fetchAll({bool fresh: false}) async {
+  Future<List<Project>> fetchAll({bool fresh = false}) async {
     int projectsNumber = 10;
     if (_projects.isEmpty || _projects.length != projectsNumber || fresh) {
       _projects = [];
