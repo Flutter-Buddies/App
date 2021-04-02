@@ -11,8 +11,8 @@ class ProjectRepository {
   Future<List<Project>> fetchAll({bool fresh = false}) async {
     if (_projects.isEmpty || fresh) {
       // fetch projects from GitHub API
-      final response =
-          await http.get('https://api.github.com/orgs/Flutter-Buddies/repos');
+      final response = await http
+          .get(Uri.parse('https://api.github.com/orgs/Flutter-Buddies/repos'));
       if (response.statusCode != 200) {
         // TODO handle error
         print('ERROR ${response.statusCode}: ${response.reasonPhrase}');

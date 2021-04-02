@@ -14,8 +14,9 @@ class EventRepository {
     if (_events.isEmpty || fresh) {
       // fetch events from calendar API
       final response = await http.get(
-        'https://www.googleapis.com/calendar/v3/calendars/gh1n5rutlqgsjpvqrba97e9atk@group.calendar.google.com/events?key=' +
-            Secrets.calendar_key,
+        Uri.parse(
+            'https://www.googleapis.com/calendar/v3/calendars/gh1n5rutlqgsjpvqrba97e9atk@group.calendar.google.com/events?key=' +
+                Secrets.calendar_key),
       );
       if (response.statusCode != 200) {
         // handle error

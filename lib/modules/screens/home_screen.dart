@@ -23,8 +23,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   // Function to get number of people online using Discord's public API
   Future<int> getDiscordOnlineNumber() async {
-    http.Response response = await http
-        .get('https://discord.com/api/guilds/768528774991446088/widget.json');
+    http.Response response = await http.get(Uri.parse(
+        'https://discord.com/api/guilds/768528774991446088/widget.json'));
     Map<String, dynamic> decoded = jsonDecode(response.body);
     dynamic numberOnline = decoded['presence_count'];
     return numberOnline;
