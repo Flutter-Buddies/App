@@ -1,12 +1,21 @@
 part of user_widgets;
 
 class YazeedAlKhalaf extends WidgetInfo {
-  get name => 'Yazeed AlKhalaf';
-  get description =>
+  @override
+  String get name => 'Yazeed AlKhalaf';
+
+  @override
+  String get description =>
       "Flutter Developer 🚀 | Youngest Participant in Hajj Hackathon, World's Largest Hackathon!";
-  get developer => "Yazeed AlKhalaf";
-  get logoPath => "assets/profile_images/yazeedalkhalaf_profile.jpg";
-  get widget => YazeedAlKhalafWidget();
+
+  @override
+  String get developer => 'Yazeed AlKhalaf';
+
+  @override
+  String get logoPath => 'assets/profile_images/yazeedalkhalaf_profile.jpg';
+
+  @override
+  Widget get widget => YazeedAlKhalafWidget();
 }
 
 final YazeedAlKhalaf yazeedAlKhalaf = YazeedAlKhalaf();
@@ -69,7 +78,7 @@ class _YazeedAlKhalafWidgetState extends State<YazeedAlKhalafWidget> {
                         height: isLeftHovering ? 60 : 50,
                         child: Center(
                           child: Text(
-                            "16 years old",
+                            '16 years old',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 30,
@@ -121,7 +130,7 @@ class _YazeedAlKhalafWidgetState extends State<YazeedAlKhalafWidget> {
                         height: isRightHovering ? 60 : 50,
                         child: Center(
                           child: Text(
-                            "Flutter Developer",
+                            'Flutter Developer',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 30,
@@ -167,7 +176,7 @@ class _YazeedAlKhalafWidgetState extends State<YazeedAlKhalafWidget> {
                       FontAwesomeIcons.github,
                     ),
                     onPressed: () async {
-                      await launch("https://github.com/YazeedAlKhalaf");
+                      await launch('https://github.com/YazeedAlKhalaf');
                     },
                   ),
                   IconButton(
@@ -176,7 +185,7 @@ class _YazeedAlKhalafWidgetState extends State<YazeedAlKhalafWidget> {
                       color: Color(0xff33A1EE),
                     ),
                     onPressed: () async {
-                      await launch("https://twitter.com/YazeedAlKhalaf");
+                      await launch('https://twitter.com/YazeedAlKhalaf');
                     },
                   ),
                   IconButton(
@@ -186,7 +195,7 @@ class _YazeedAlKhalafWidgetState extends State<YazeedAlKhalafWidget> {
                     ),
                     onPressed: () async {
                       await launch(
-                          "https://www.youtube.com/channel/UCKl9vaVnPf17yOnizbYgEzg");
+                          'https://www.youtube.com/channel/UCKl9vaVnPf17yOnizbYgEzg');
                     },
                   ),
                 ],
@@ -204,7 +213,7 @@ class _YazeedAlKhalafWidgetState extends State<YazeedAlKhalafWidget> {
                       minimumSize: Size(120, 60),
                     ),
                     child: Text(
-                      "Chat",
+                      'Chat',
                       style: TextStyle(
                         fontSize: 18,
                         color: Color(0xff262626),
@@ -219,7 +228,7 @@ class _YazeedAlKhalafWidgetState extends State<YazeedAlKhalafWidget> {
                       primary: Color(0xff5C56F9),
                     ),
                     child: Text(
-                      "Message",
+                      'Message',
                       style: TextStyle(
                         fontSize: 18,
                         color: Colors.white,
