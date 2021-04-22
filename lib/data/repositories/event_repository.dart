@@ -6,9 +6,16 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_buddies/data/models/event.dart';
 
 class EventRepository {
+  static final EventRepository _eventRepository = EventRepository._();
   List<Event> _events = [];
 
-  static EventRepository get() => EventRepository();
+  static EventRepository get() => _eventRepository;
+
+  factory EventRepository() {
+    return _eventRepository;
+  }
+
+  EventRepository._();
 
   // TODO
   Future<List<Event>> fetchAll({bool fresh: false}) async {
@@ -37,7 +44,16 @@ class EventRepository {
   }
 }
 
-class FakeEventRepository extends EventRepository {
+class FakeEventRepository implements EventRepository {
+  final EventRepository _delegate;
+
+  List<Event> get _events => _delegate._events;
+  set _events(value) => _delegate._events = value;
+
+  FakeEventRepository() : _delegate = EventRepository();
+
+  Future<List<Event>> take([int count = 4]) => _delegate.take();
+
   @override
   Future<List<Event>> fetchAll({bool fresh: false}) async {
     int eventsNumber = 10;
