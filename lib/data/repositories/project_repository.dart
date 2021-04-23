@@ -4,9 +4,16 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_buddies/data/models/project.dart';
 
 class ProjectRepository {
+  static final ProjectRepository _projectRepository = ProjectRepository._();
   List<Project> _projects = [];
 
-  static ProjectRepository get() => ProjectRepository();
+  static ProjectRepository get() => _projectRepository;
+
+  factory ProjectRepository() {
+    return _projectRepository;
+  }
+
+  ProjectRepository._();
 
   Future<List<Project>> fetchAll({bool fresh = false}) async {
     if (_projects.isEmpty || fresh) {
@@ -36,7 +43,17 @@ class ProjectRepository {
   }
 }
 
-class FakeProjectRepository extends ProjectRepository {
+class FakeProjectRepository implements ProjectRepository {
+  final ProjectRepository _delegate;
+
+  List<Project> get _projects => _delegate._projects;
+  set _projects(value) => _delegate._projects = value;
+
+  FakeProjectRepository() : _delegate = ProjectRepository();
+
+  Future<List<Project>> take([int count = 3]) => _delegate.take();
+  Future<List<Project>> takeAll() => _delegate.takeAll();
+
   @override
   Future<List<Project>> fetchAll({bool fresh = false}) async {
     int projectsNumber = 10;
