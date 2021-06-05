@@ -10,7 +10,7 @@ class GehrmannInfo extends WidgetInfo {
   String get description => 'This is an example of a basic widget';
 
   @override
-  String get developer => 'Joey Marino'; //use any name for yourself
+  String get developer => 'Thomas Gehrmann'; //use any name for yourself
 
   @override
   String get logoPath => 'assets/profile_logos/flutter_buddy.png';
