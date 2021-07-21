@@ -27,13 +27,45 @@ class GehrmannWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(),
-        body: Column(
-          children: [
-            Center(
-              child: Text('Example Widget'),
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+        ),
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.bottomLeft,
+              end: Alignment.topRight,
+              stops: [0.1, 0.5, 0.8, 0.9],
+              colors: [Colors.red, Colors.yellow, Colors.blue, Colors.purple],
             ),
-          ],
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              //crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  'Thomas Gehrmann',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 32,
+                  ),
+                ),
+                Text('AI, Blockchain and Flutter Enthusiast'),
+                SizedBox(
+                  height: 16,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 48),
+                  child:
+                      Text('''I studied Physics and Economics in Bonn, Germany.
+I am very curios and fascinated by new technologies, like AI and Blockchain.
+                  '''),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
